@@ -21,7 +21,7 @@ const Onboarding = () => {
         </div>
         <div className="grid grid-flow-col gap-4 mt-10">
             {onboardingData.map((data) => (
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center" key={data.text}>
                     <img src={data.image_src} alt={data.text} width={300} />
                     <h1 className="text-center italic font-light text-[17px]">{data.text}</h1>
                 </div>
