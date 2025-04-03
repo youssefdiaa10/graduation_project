@@ -1,6 +1,7 @@
 import './App.css'
-import Login from './app/Login'
-import Signup from './app/Signup'
+import Onboarding from './app/Onboarding'
+// import Login from './app/Login'
+// import Signup from './app/Signup'
 
 function App() {
 
@@ -8,7 +9,8 @@ function App() {
     <>
       <div>
         {/* <Login/> */}
-        <Signup/>
+        {/* <Signup/> */}
+        <Onboarding/>
       </div>
     </>
   )
