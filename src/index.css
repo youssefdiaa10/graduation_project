@@ -3,6 +3,7 @@
 @theme {
   --color-main: #567FAA;
   --color-bg-main: #0261A0;
+  --color-secondary: #003659;
 }
 
 @layer components {
@@ -10,7 +11,15 @@
     color: var(--color-main);
   }
 
+  .text-secondary-color {
+    color: var(--color-secondary);
+  }
+
   .bg-main-color {
     background-color: var(--color-bg-main);
+  }
+
+  .bg-secondary-color {
+    background-color: var(--color-secondary);
   }
 }
