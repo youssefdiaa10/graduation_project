@@ -1,9 +1,9 @@
-import OnboardingV1 from './types';
+import {IOnboardingV1} from './types';
 import image1 from "../assets/onboarding_grad_proj_img1.png"
 import image2 from "../assets/onboarding_grad_proj_img2.png"
 import image3 from "../assets/onboarding_grad_proj_img3.png"
 
-export const onboardingData: Array<OnboardingV1> = [
+export const onboardingData: Array<IOnboardingV1> = [
     {
         image_src: image1,
         text:"Get tailored book suggestions based on your reading history and preferences."
