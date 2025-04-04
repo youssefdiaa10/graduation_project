@@ -1,4 +1,5 @@
 import { BookItem } from "../components/BookItem"
+import { Infos } from "../components/Infos"
 import Navbar from "../components/Navbar"
 import { books } from "../utils/books"
 const Blog = () => {
@@ -9,7 +10,7 @@ const Blog = () => {
       </div>
       <div className="mt-10 grid grid-flow-col">
         <div className="bg-amber-900 ">
-          BLOG 1
+          <Infos />
         </div>
         <div className=" grid grid-cols-5 gap-y-5">
           {books.map(book => (
