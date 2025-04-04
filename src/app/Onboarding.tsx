@@ -1,12 +1,15 @@
 import { onboardingData } from "../utils/landing"
 import bgURL from "../assets/onboarding_grad_proj_bg_img.png"
+import { Link } from "react-router-dom"
 
 const Onboarding = () => {
   return (
     <div className="">
         <div className="rounded-bl-[200px] rounded-br-[500px] py-6 bg-[url(../assets/onboarding_grad_proj_bg_img.png)]">
             <div className="py-3 flex justify-end">
-                <button className="py-4 px-7 rounded-2xl text-2xl mr-9 text-white font-bold bg-main-color italic">Sign in</button>
+                <Link to={"/login"}>
+                    <button className="py-4 px-7 rounded-2xl text-2xl mr-9 text-white font-bold bg-main-color italic">Sign in</button>
+                </Link>
             </div>
             <div className="flex flex-col items-center">
                 <div className="">

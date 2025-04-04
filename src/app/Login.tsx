@@ -1,5 +1,6 @@
 import Icon from "../components/Icon"
 import image from "../assets/login_grad_proj_img.jpeg"
+import { Link } from "react-router-dom"
 
 const Login = () => {
   return (
@@ -22,7 +23,11 @@ const Login = () => {
                     </div>
                 </form>
                 <button type="submit" className="mt-6 text-white bg bg-main-color w-full py-2 rounded-3xl font-bold">Login</button>
-                <h1 className="mt-2 text-center">You don't have an account? <span className="text-blue-500">Sign up</span></h1>
+                <h1 className="mt-2 text-center">You don't have an account? <br />
+                  <Link to={"/signup"}>
+                    <span className="text-blue-500">Sign up</span>
+                  </Link>
+                </h1>
         </div>
         </div>
       </div>
