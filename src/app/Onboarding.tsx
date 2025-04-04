@@ -1,4 +1,4 @@
-import { onboardingData } from "../utils/landing"
+import { onboardingData } from "../utils/constants"
 import bgURL from "../assets/onboarding_grad_proj_bg_img.png"
 import { Link } from "react-router-dom"
 

@@ -1,7 +1,7 @@
 import { BookItem } from "../components/BookItem"
 import { Infos } from "../components/Infos"
 import Navbar from "../components/Navbar"
-import { books } from "../utils/books"
+import { books } from "../utils/constants"
 const Blog = () => {
   return (
     <div>
