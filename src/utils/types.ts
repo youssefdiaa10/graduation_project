@@ -1,3 +1,6 @@
+import React from "react";
+import { IconType } from "react-icons";
+
 export interface IOnboardingV1 {
     image_src: string;
     text: string;
@@ -18,4 +21,9 @@ export interface IBook {
     book_name: string;
     author_name: string;
     rating: string;
+}
+
+export interface IInfo {
+    // icon: React.JSX.IntrinsicElements;
+    text: string;
 }
