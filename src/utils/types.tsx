@@ -12,3 +12,10 @@ export interface IInput {
     input_class: string;
     placeholder: string;
 }
+
+export interface IBook {
+    image_src: string;
+    book_name: string;
+    author_name: string;
+    rating: string;
+}
