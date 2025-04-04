@@ -1,5 +1,4 @@
 import { IInfo, IInput, IOnboardingV1, IBook } from "./types";
-import { FaHome } from "react-icons/fa";
 import image1 from "../assets/onboarding_grad_proj_img1.png"
 import image2 from "../assets/onboarding_grad_proj_img2.png"
 import image3 from "../assets/onboarding_grad_proj_img3.png"
@@ -184,7 +183,15 @@ export const login_inputs: Array<IInput> = [
 
 export const infos: Array<IInfo> = [
     {
-        // icon: ,
+        // id: 1,
         text: "Home Screen"
+    },
+    {
+        // id: 2,
+        text: "Profile"
+    },
+    {
+        // id: 3,
+        text: "Recommendation"
     },
 ]
