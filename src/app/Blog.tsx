@@ -9,7 +9,7 @@ const Blog = () => {
         <Navbar/>
       </div>
       <div className="mt-10 grid grid-flow-col">
-        <div className="shadow-xl">
+        <div className="shadow-xl rounded-2xl">
           <Infos />
         </div>
         <div className="px-5 grid grid-cols-5 gap-y-8">
