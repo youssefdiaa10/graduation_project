@@ -15,7 +15,6 @@ export const BookItem = ({
                 <h1 className="text-[13px] text-gray-600">{author_name}</h1>
                 <div className="flex gap-2 items-center justify-center mt-2">
                     <span>{rating}</span>
-                    {/* ⭐ */}
                     <FaStar className="text-yellow-300"/>
                 </div>
             </div>
