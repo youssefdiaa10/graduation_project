@@ -1,6 +1,6 @@
 import Icon from "../components/Icon"
 import image from "../assets/signup_grad_proj_img.jpeg"
-import { signup_inputs } from "../utils/inputs"
+import { signup_inputs } from "../utils/constants"
 import Input from "../components/Input"
 
 const Signup = () => {

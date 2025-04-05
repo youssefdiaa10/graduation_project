@@ -1,7 +1,7 @@
 import Icon from "../components/Icon"
 import image from "../assets/login_grad_proj_img.jpeg"
 import { Link } from "react-router-dom"
-import { login_inputs } from "../utils/inputs"
+import { login_inputs } from "../utils/constants"
 import Input from "../components/Input"
 
 const Login = () => {
