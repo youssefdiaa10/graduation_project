@@ -7,6 +7,7 @@ import PlanSelection from './app/PlanSelection'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
 import { motion } from "framer-motion"
+import BookItem from './app/BookItem'
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
   { path: "/login", element: <Login/> },
   { path: "/signup", element: <Signup/> },
   { path: "/home", element: <ProtectedRoute><Home/></ProtectedRoute> },
+  { path: "/home/:book_name", element: <ProtectedRoute><BookItem/></ProtectedRoute> },
   { path: "/plans", element: <ProtectedRoute><PlanSelection/></ProtectedRoute> },
 ])
 

@@ -1,9 +1,10 @@
-import { BookItem } from "../components/BookItem"
+import { Book } from "../components/Book"
 import { Infos } from "../components/Infos"
 import Navbar from "../components/Navbar"
 import { motion } from "framer-motion"
 import { books } from "../utils/constants"
 import { slideInFromLeft, slideInFromRight, slideInFromTop } from "../utils/motion"
+import { Link } from "react-router-dom"
 
 const Home = () => {
   return (
@@ -23,13 +24,15 @@ const Home = () => {
             <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
             <div className="bg-gray-100 rounded-4xl scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
-                <BookItem
-                key={book.book_name}
-                image_src={book.image_src}
-                book_name={book.book_name}
-                author_name={book.author_name}
-                rating={book.rating}
-                />
+                <Link className="shrink-0" to={`/home/${book.book_name}`}>
+                  <Book
+                  key={book.book_name}
+                  image_src={book.image_src}
+                  book_name={book.book_name}
+                  author_name={book.author_name}
+                  rating={book.rating}
+                  />
+                </Link>
               ))}
             </div>
           </motion.div>
@@ -39,13 +42,15 @@ const Home = () => {
             <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
             <div className="bg-gray-100 rounded-4xl scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
-                <BookItem
-                key={book.book_name}
-                image_src={book.image_src}
-                book_name={book.book_name}
-                author_name={book.author_name}
-                rating={book.rating}
-                />
+                <Link className="shrink-0" to={`/home/${book.book_name}`}>
+                  <Book
+                  key={book.book_name}
+                  image_src={book.image_src}
+                  book_name={book.book_name}
+                  author_name={book.author_name}
+                  rating={book.rating}
+                  />
+                </Link>
               ))}
             </div>
           </motion.div>
@@ -55,13 +60,15 @@ const Home = () => {
             <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
             <div className="bg-gray-100 rounded-4xl scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
-                <BookItem
-                key={book.book_name}
-                image_src={book.image_src}
-                book_name={book.book_name}
-                author_name={book.author_name}
-                rating={book.rating}
-                />
+                <Link className="shrink-0" to={`/home/${book.book_name}`}>
+                  <Book
+                  key={book.book_name}
+                  image_src={book.image_src}
+                  book_name={book.book_name}
+                  author_name={book.author_name}
+                  rating={book.rating}
+                  />
+                </Link>
               ))}
             </div>
           </motion.div>
