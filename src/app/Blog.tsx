@@ -22,6 +22,7 @@ const Blog = () => {
             <div className="px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
+                key={book.book_name}
                 image_src={book.image_src}
                 book_name={book.book_name}
                 author_name={book.author_name}
@@ -37,6 +38,7 @@ const Blog = () => {
             <div className="px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
+                key={book.book_name}
                 image_src={book.image_src}
                 book_name={book.book_name}
                 author_name={book.author_name}
@@ -52,6 +54,7 @@ const Blog = () => {
             <div className="px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
+                key={book.book_name}
                 image_src={book.image_src}
                 book_name={book.book_name}
                 author_name={book.author_name}
