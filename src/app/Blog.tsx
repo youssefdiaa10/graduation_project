@@ -21,7 +21,7 @@ const Blog = () => {
 
           <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
             <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
-            <div className="scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
+            <div className="bg-gray-100 rounded-4xl scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
                 key={book.book_name}
@@ -37,7 +37,7 @@ const Blog = () => {
 
           <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
             <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
-            <div className="scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
+            <div className="bg-gray-100 rounded-4xl scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
                 key={book.book_name}
@@ -53,7 +53,7 @@ const Blog = () => {
 
           <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
             <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
-            <div className="scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
+            <div className="bg-gray-100 rounded-4xl scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
                 key={book.book_name}
