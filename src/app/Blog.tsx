@@ -1,24 +1,26 @@
 import { BookItem } from "../components/BookItem"
 import { Infos } from "../components/Infos"
 import Navbar from "../components/Navbar"
+import { motion } from "framer-motion"
 import { books } from "../utils/constants"
+import { slideInFromLeft, slideInFromRight, slideInFromTop } from "../utils/motion"
 
 const Blog = () => {
   return (
     <div className="h-screen">
-      <div>
+      <motion.div variants={slideInFromTop(0.5)}>
         <Navbar/>
-      </div>
+      </motion.div>
       <div className="mt-10 grid grid-flow-col grid-cols-5 h-screen">
-        <div className="shadow-xl rounded-2xl col-span-1 grid grid-cols-subgrid bg-white">
+        <motion.div variants={slideInFromLeft(1)} className="shadow-xl rounded-2xl col-span-1 grid grid-cols-subgrid bg-white">
           <Infos />
-        </div>
+        </motion.div>
 
         <div className="col-span-4 grid-cols-subgrid">
 
 
           <div className="ml-7 my-10">
-            <h1 className="text-[27px] mb-3 font-bold text-secondary-color">Policy</h1>
+            <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
             <div className="px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
@@ -33,8 +35,8 @@ const Blog = () => {
           </div>
 
 
-          <div className="ml-7 my-10">
-            <h1 className="text-[27px] mb-3 font-bold text-secondary-color">Policy</h1>
+          <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
+            <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
             <div className="px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
@@ -46,11 +48,11 @@ const Blog = () => {
                 />
               ))}
             </div>
-          </div>
+          </motion.div>
 
 
-          <div className="ml-7 my-10">
-            <h1 className="text-[27px] mb-3 font-bold text-secondary-color">Policy</h1>
+          <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
+            <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
             <div className="px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
@@ -62,7 +64,7 @@ const Blog = () => {
                 />
               ))}
             </div>
-          </div>
+          </motion.div>
 
 
         </div>
