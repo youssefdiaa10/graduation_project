@@ -1,13 +1,11 @@
 import { onboardingData } from "../utils/constants"
-import { Link, Links } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import { slideInFromDown, slideInFromLeft, slideInFromRight, slideInFromTop } from '../utils/motion';
 
 const Onboarding = () => {
   return (
-    <motion.section
-    initial="hidden"
-    animate="visible"
+    <section
     className="overflow-hidden"
     >
         <div className="rounded-bl-[500px] rounded-br-[500px] bg-img-onboarding py-20">
@@ -47,7 +45,7 @@ const Onboarding = () => {
                 </motion.div>
             ))}
         </div>
-    </motion.section>
+    </section>
   )
 }
 
