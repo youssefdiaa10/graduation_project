@@ -30,4 +30,8 @@
     background-attachment: fixed;
     background-size: cover;
   }
+
+  .scrollable-div::-webkit-scrollbar {
+    display: none;
+  }
 }

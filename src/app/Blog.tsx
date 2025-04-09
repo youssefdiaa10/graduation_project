@@ -19,25 +19,9 @@ const Blog = () => {
         <div className="col-span-4 grid-cols-subgrid">
 
 
-          <div className="ml-7 my-10">
-            <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
-            <div className="px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
-              {books.map(book => (
-                <BookItem
-                key={book.book_name}
-                image_src={book.image_src}
-                book_name={book.book_name}
-                author_name={book.author_name}
-                rating={book.rating}
-                />
-              ))}
-            </div>
-          </div>
-
-
           <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
             <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
-            <div className="px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
+            <div className="scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
                 key={book.book_name}
@@ -53,7 +37,23 @@ const Blog = () => {
 
           <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
             <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
-            <div className="px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
+            <div className="scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
+              {books.map(book => (
+                <BookItem
+                key={book.book_name}
+                image_src={book.image_src}
+                book_name={book.book_name}
+                author_name={book.author_name}
+                rating={book.rating}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+
+          <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
+            <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
+            <div className="scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
               {books.map(book => (
                 <BookItem
                 key={book.book_name}
