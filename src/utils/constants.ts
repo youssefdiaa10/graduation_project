@@ -1,4 +1,4 @@
-import { IInfo, IInput, IOnboardingV1, IBook } from "./types";
+import { IInfo, IInput, IOnboardingV1, IBook, IUser } from "./types";
 import image1 from "../assets/onboarding_grad_proj_img1.png"
 import image2 from "../assets/onboarding_grad_proj_img2.png"
 import image3 from "../assets/onboarding_grad_proj_img3.png"
@@ -9,97 +9,79 @@ import blog_image_2 from "../assets/blog_grad_proj_book_img_2.jpeg"
 export const books: Array<IBook> = [
     {
         image_src: blog_image_1,
-        book_name: "The Name of the Wind ",
+        book_name: "The Name of the Wina",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_2,
-        book_name: "The Name of the Wind ",
+        book_name: "The Name of the Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_1,
-        book_name: "The Name of the Wind ",
+        book_name: "The Name of the Win",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_2,
-        book_name: "The Name of the Wind ",
+        book_name: "The Name of the Wi",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_1,
-        book_name: "The Name of the Wind ",
+        book_name: "The Ne of the Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_2,
-        book_name: "The Name of the Wind ",
+        book_name: "The Nam f the Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_1,
-        book_name: "The Name of the Wind ",
+        book_name: "TName of the Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_2,
-        book_name: "The Name of the Wind ",
+        book_name: "Name of the Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_1,
-        book_name: "The Name of the Wind ",
+        book_name: "The of the Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_2,
-        book_name: "The Name of the Wind ",
+        book_name: "The Name of Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_1,
-        book_name: "The Name of the Wind ",
+        book_name: "The Name of thy Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_2,
-        book_name: "The Name of the Wind ",
+        book_name: "The Name of 09he Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
         image_src: blog_image_1,
-        book_name: "The Name of the Wind ",
-        author_name: "Brandon Sanderson",
-        rating: "4.4",
-    },
-    {
-        image_src: blog_image_2,
-        book_name: "The Name of the Wind ",
-        author_name: "Brandon Sanderson",
-        rating: "4.4",
-    },
-    {
-        image_src: blog_image_1,
-        book_name: "The Name of the Wind ",
-        author_name: "Brandon Sanderson",
-        rating: "4.4",
-    },
-    {
-        image_src: blog_image_2,
-        book_name: "The Name of the Wind ",
+        book_name: "The Name orb the Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
@@ -178,6 +160,26 @@ export const login_inputs: Array<IInput> = [
         input_type: "password",
         input_class: "border border-sky-400 py-1 px-1.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]",
         placeholder: "Enter your Password"
+    },
+]
+
+
+export const users: Array<IUser> = [
+    {
+        email: "youssef10@gmail.com",
+        password: "qwe",
+    },
+    {
+        email: "youssef20@gmail.com",
+        password: "rty",
+    },
+    {
+        email: "youssef30@gmail.com",
+        password: "uio",
+    },
+    {
+        email: "youssef40@gmail.com",
+        password: "pas",
     },
 ]
 

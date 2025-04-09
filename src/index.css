@@ -22,4 +22,16 @@
   .bg-secondary-color {
     background-color: var(--color-secondary);
   }
+
+  .bg-img-onboarding {
+    background-image: url("assets/onboarding_grad_proj_bg_img.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .scrollable-div::-webkit-scrollbar {
+    display: none;
+  }
 }
