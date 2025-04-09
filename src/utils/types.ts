@@ -24,3 +24,8 @@ export interface IInfo {
     // id: number;
     text: string;
 }
+
+export interface IUser {
+    email: string;
+    password: string;
+}
