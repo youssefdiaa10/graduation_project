@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { books } from "../utils/constants"
 import { slideInFromLeft, slideInFromRight, slideInFromTop } from "../utils/motion"
 
-const Blog = () => {
+const Home = () => {
   return (
     <div className="h-screen">
       <motion.div variants={slideInFromTop(0.5)}>
@@ -73,4 +73,4 @@ const Blog = () => {
   )
 }
 
-export default Blog
+export default Home
