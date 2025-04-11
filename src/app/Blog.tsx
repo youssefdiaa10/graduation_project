@@ -1,75 +1,85 @@
-import { BookItem } from "../components/BookItem"
-import { Infos } from "../components/Infos"
-import Navbar from "../components/Navbar"
-import { motion } from "framer-motion"
 import { books } from "../utils/constants"
-import { slideInFromLeft, slideInFromRight, slideInFromTop } from "../utils/motion"
+import { motion } from "framer-motion"
+import { slideInFromRight, slideInFromTop } from "../utils/motion"
+import { Book } from "../components/Book"
+import { GoArrowRight } from "react-icons/go"
+import { Link } from "react-router-dom"
+
 
 const Blog = () => {
   return (
-    <div className="h-screen">
-      <motion.div variants={slideInFromTop(0.5)}>
-        <Navbar/>
-      </motion.div>
-      <div className="mt-10 grid grid-flow-col grid-cols-5 h-screen">
-        <motion.div variants={slideInFromLeft(1)} className="shadow-xl rounded-2xl col-span-1 grid grid-cols-subgrid bg-white">
-          <Infos />
+    <>
+        <motion.div variants={slideInFromTop(.5)} className="ml-7 my-10">
+            <div className="flex justify-between items-baseline">
+                <motion.h1 variants={slideInFromRight(1)} className="text-[27px] my-3 mx-5 font-bold text-secondary-color">Geography</motion.h1>
+                <Link to={`/home/genre/Geography`}>
+                    <motion.div variants={slideInFromRight(1)} className="mx-5 flex gap-2 items-center">
+                        <h1 className="text-[17px] my-3 text-main-color">See All</h1>
+                        <GoArrowRight className="text-main-color text-[22px]"/>
+                    </motion.div>
+                </Link>
+            </div>
+            <div className="bg-gray-100 rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
+                {books.map(book => (
+                    <Book
+                    key={book.book_name}
+                    image_src={book.image_src}
+                    book_name={book.book_name}
+                    author_name={book.author_name}
+                    rating={book.rating}
+                    />
+                ))}
+            </div>
         </motion.div>
 
-        <div className="col-span-4 grid-cols-subgrid">
 
-
-          <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
-            <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
-            <div className="bg-gray-100 rounded-4xl scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
-              {books.map(book => (
-                <BookItem
-                key={book.book_name}
-                image_src={book.image_src}
-                book_name={book.book_name}
-                author_name={book.author_name}
-                rating={book.rating}
-                />
-              ))}
+        <motion.div variants={slideInFromTop(.5)} className="ml-7 my-10">
+            <div className="flex justify-between items-baseline">
+                <motion.h1 variants={slideInFromRight(1)} className="text-[27px] my-3 mx-5 font-bold text-secondary-color">French</motion.h1>
+                <Link to={`/home/genre/French`}>
+                    <motion.div variants={slideInFromRight(1)} className="mx-5 flex gap-2 items-center">
+                        <h1 className="text-[17px] my-3 text-main-color">See All</h1>
+                        <GoArrowRight className="text-main-color text-[22px]"/>
+                    </motion.div>
+                </Link>
             </div>
-          </motion.div>
-
-
-          <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
-            <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
-            <div className="bg-gray-100 rounded-4xl scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
-              {books.map(book => (
-                <BookItem
-                key={book.book_name}
-                image_src={book.image_src}
-                book_name={book.book_name}
-                author_name={book.author_name}
-                rating={book.rating}
-                />
-              ))}
+            <div className="bg-gray-100 rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
+                {books.map(book => (
+                    <Book
+                    key={book.book_name}
+                    image_src={book.image_src}
+                    book_name={book.book_name}
+                    author_name={book.author_name}
+                    rating={book.rating}
+                    />
+                ))}
             </div>
-          </motion.div>
+        </motion.div>
 
 
-          <motion.div variants={slideInFromTop(1.5)} className="ml-7 my-10">
-            <motion.h1 variants={slideInFromRight(2)} className="text-[27px] mb-3 font-bold text-secondary-color">Policy</motion.h1>
-            <div className="bg-gray-100 rounded-4xl scrollable-div px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
-              {books.map(book => (
-                <BookItem
-                key={book.book_name}
-                image_src={book.image_src}
-                book_name={book.book_name}
-                author_name={book.author_name}
-                rating={book.rating}
-                />
-              ))}
+        <motion.div variants={slideInFromTop(.5)} className="ml-7 my-10">
+            <div className="flex justify-between items-baseline">
+                <motion.h1 variants={slideInFromRight(1)} className="text-[27px] my-3 mx-5 font-bold text-secondary-color">Novel</motion.h1>
+                <Link to={`/home/genre/Novel`}>
+                    <motion.div variants={slideInFromRight(1)} className="mx-5 flex gap-2 items-center">
+                        <h1 className="text-[17px] my-3 text-main-color">See All</h1>
+                        <GoArrowRight className="text-main-color text-[22px]"/>
+                    </motion.div>
+                </Link>
             </div>
-          </motion.div>
-
-
-        </div>
-      </div>
-    </div>
+            <div className="bg-gray-100 rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
+                {books.map(book => (
+                    <Book
+                    key={book.book_name}
+                    image_src={book.image_src}
+                    book_name={book.book_name}
+                    author_name={book.author_name}
+                    rating={book.rating}
+                    />
+                ))}
+            </div>
+        </motion.div>
+    </>
   )
 }
 

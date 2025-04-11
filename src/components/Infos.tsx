@@ -1,11 +1,22 @@
-import { IoPersonSharp } from "react-icons/io5";
-import { FaHome, FaRegLightbulb } from "react-icons/fa";
+import { FaHome, FaRegLightbulb, FaHeart, FaHistory } from "react-icons/fa";
+import { BsChatLeftText } from "react-icons/bs";
 import image from "../assets/info_grad_proj_profile_img.jpg"
+import { NavLink } from "react-router-dom";
+import { useGenreShowStore } from "../store/genreShowStore";
 
 export const Infos = () => {
+
+    const { isShow, setIsShow } = useGenreShowStore()
+
+    const handleAccordion = () => {
+        if (isShow === true) {
+            setIsShow()
+        }
+    }
+
   return (
     <>
-        <div className="">
+        <div>
             <div className="flex flex-col items-center mt-10">
                 <div className="w-[75px] h-[75px] flex justify-center items-center rounded-full overflow-hidden">
                     <img src={image} alt="face"/>
@@ -13,20 +24,30 @@ export const Infos = () => {
                 <h1 className="text-center font-bold text-[17px] mt-3">Ahmed <br /> Mohamed</h1>
             </div>
             <div className="mt-10">
-                <div className="transition duration-300 hover:text-white hover:bg-blue-500 bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5">
-                    <FaHome className="text-[20px] ml-5"/>
-                    <h1 className="font-bold">Home Screen</h1>
-                </div>
+                    <NavLink onClick={handleAccordion} to={"/home/blog"} className={`${({ isActive } : { isActive: boolean }) => isActive ? "bg-blue-500 text-white" : ""} transition duration-300 hover:text-white hover:bg-blue-500 bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5`}>
+                        <FaHome className="text-[20px] ml-5 mr-2"/>
+                        <h1 className="font-bold">Home Screen</h1>
+                    </NavLink>
 
-                <div className="transition duration-300 hover:text-white hover:bg-blue-500 bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5">
-                    <IoPersonSharp className="text-[20px] ml-5"/>
-                    <h1 className="font-bold">Profile</h1>
-                </div>
+                    <NavLink onClick={handleAccordion} to={"/home/recommendation"} className={`${({ isActive } : { isActive: boolean }) => isActive ? "bg-blue-500 text-white" : ""} transition duration-300 hover:text-white hover:bg-blue-500 bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5`}>
+                        <FaRegLightbulb className="text-[20px] ml-5 mr-2"/>
+                        <h1 className="font-bold">Recommendation</h1>
+                    </NavLink>
 
-                <div className="transition duration-300 hover:text-white hover:bg-blue-500 bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5">
-                    <FaRegLightbulb className="text-[20px] ml-5"/>
-                    <h1 className="font-bold">Recommendation</h1>
-                </div>
+                    <NavLink onClick={handleAccordion} to={"/"} className={`${({ isActive } : { isActive: boolean }) => isActive ? "bg-blue-500 text-white" : ""} transition duration-300 hover:text-white hover:bg-blue-500 bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5`}>
+                        <FaHistory className="text-[20px] ml-5 mr-2"/>
+                        <h1 className="font-bold">Reading History</h1>
+                    </NavLink>
+
+                    <NavLink onClick={handleAccordion} to={"/home/favorite"} className={`${({ isActive } : { isActive: boolean }) => isActive ? "bg-blue-500 text-white" : ""} transition duration-300 hover:text-white hover:bg-blue-500 bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5`}>
+                        <FaHeart className="text-[20px] ml-5 mr-2"/>
+                        <h1 className="font-bold">Favorite Books</h1>
+                    </NavLink>
+
+                    <NavLink onClick={handleAccordion} to={"/home/chat"} className={`${({ isActive } : { isActive: boolean }) => isActive ? "bg-blue-500 text-white" : ""} transition duration-300 hover:text-white hover:bg-blue-500 bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5`}>
+                        <BsChatLeftText className="text-[20px] ml-5 mr-2"/>
+                        <h1 className="font-bold">Chat With Us</h1>
+                    </NavLink>
             </div>
         </div>
     </>

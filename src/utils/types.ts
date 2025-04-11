@@ -3,16 +3,6 @@ export interface IOnboardingV1 {
     text: string;
 }
 
-export interface IInput {
-    div_class: string;
-    label_class: string;
-    label_text: string;
-    input_id: string;
-    input_type: string;
-    input_class: string;
-    placeholder: string;
-}
-
 export interface IBook {
     image_src: string;
     book_name: string;
@@ -28,4 +18,8 @@ export interface IInfo {
 export interface IUser {
     email: string;
     password: string;
+}
+
+export interface IGenreList {
+    text: string;
 }
