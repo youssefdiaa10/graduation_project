@@ -19,3 +19,7 @@ export interface IUser {
     email: string;
     password: string;
 }
+
+export interface IGenreList {
+    text: string;
+}
