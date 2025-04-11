@@ -13,6 +13,8 @@ import Blog from './app/Blog'
 import Chat from './app/Chat'
 import Recommendation from './app/Recommendation'
 import Genre from './app/Genre'
+import Favorite from './app/Favorite'
+import { FavoriteBooksProvider } from './context/FavoriteContext'
 
 
 const router = createBrowserRouter([
@@ -49,6 +51,10 @@ const router = createBrowserRouter([
         element: <ProtectedRoute><Recommendation/></ProtectedRoute>
       },
       {
+        path: "/home/favorite",
+        element: <ProtectedRoute><Favorite/></ProtectedRoute>
+      },
+      {
         path: "/home/genre/:genre_name",
         element: <ProtectedRoute><Genre/></ProtectedRoute>
       },
@@ -67,9 +73,11 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <motion.div initial="hidden" animate="visible">
+    <FavoriteBooksProvider>
+      <motion.div initial="hidden" animate="visible">
         <RouterProvider router={router}/>
-    </motion.div>
+      </motion.div>
+    </FavoriteBooksProvider>
   )
 }
 
