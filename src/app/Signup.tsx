@@ -1,5 +1,5 @@
 import Icon from "../components/Icon"
-import image from "../assets/signup_grad_proj_img.jpeg"
+import image from "../assets/signup/signup_grad_proj_img.jpeg"
 import { useState } from "react"
 // import { useUserStore } from "../store/authStore"
 import { useNavigate } from "react-router-dom"

@@ -1,8 +1,7 @@
 import Icon from "../components/Icon"
-import image from "../assets/login_grad_proj_img.jpeg"
+import image from "../assets/login/login_grad_proj_img.jpeg"
 import { Link, useNavigate } from "react-router-dom"
-import { login_inputs, users } from "../utils/constants"
-import Input from "../components/Input"
+import { users } from "../utils/constants"
 import { useState } from "react"
 import { useUserStore } from "../store/authStore"
 

@@ -1,11 +1,11 @@
 import { IInfo, IOnboardingV1, IBook, IUser, IGenreList } from "./types";
-import image1 from "../assets/onboarding_grad_proj_img1.png"
-import image2 from "../assets/onboarding_grad_proj_img2.png"
-import image3 from "../assets/onboarding_grad_proj_img3.png"
-import blog_image_1 from "../assets/blog_grad_proj_book_img.jpeg"
-import blog_image_2 from "../assets/blog_grad_proj_book_img_2.jpeg"
-import blog_image_3 from "../assets/blog_grad_proj_book_img_3.jpeg"
-import blog_image_4 from "../assets/blog_grad_proj_book_img_4.jpeg"
+import image1 from "../assets/onboarding/onboarding_grad_proj_img1.png"
+import image2 from "../assets/onboarding/onboarding_grad_proj_img2.png"
+import image3 from "../assets/onboarding/onboarding_grad_proj_img3.png"
+import blog_image_1 from "../assets/blog/blog_grad_proj_book_img.jpeg"
+import blog_image_2 from "../assets/blog/blog_grad_proj_book_img_2.jpeg"
+import blog_image_3 from "../assets/blog/blog_grad_proj_book_img_3.jpeg"
+import blog_image_4 from "../assets/blog/blog_grad_proj_book_img_4.jpeg"
 
 
 export const books: Array<IBook> = [
