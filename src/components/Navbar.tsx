@@ -20,7 +20,7 @@ const Navbar = () => {
         <p className="text-gray-600 font-bold mx-5">|</p>
         <div className="flex items-center gap-3">
             <IoIosArrowDown onClick={setIsShow} className="text-[22px]"/>
-            <h1 className="font-medium">Genre (All)</h1>
+            <h1 className="font-medium">Genre</h1>
         </div>
     </div>
   )
