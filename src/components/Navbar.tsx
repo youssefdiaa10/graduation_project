@@ -14,8 +14,8 @@ const Navbar = () => {
             <IoEarth className="text-[22px]"/>
         </div>
         <p className="text-gray-600 font-bold mx-5">|</p>
-        <NavLink to={"/home/search"}>
-            <IoSearch  className="text-[22px]"/>
+        <NavLink className={({ isActive }) => isActive === true ? "text-main" : ""} to={"/home/search"}>
+            <IoSearch className="text-[22px]"/>
         </NavLink>
         <p className="text-gray-600 font-bold mx-5">|</p>
         <div className="flex items-center gap-3">
