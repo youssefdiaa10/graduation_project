@@ -1,9 +1,11 @@
-import { IInfo, IInput, IOnboardingV1, IBook, IUser } from "./types";
+import { IInfo, IOnboardingV1, IBook, IUser } from "./types";
 import image1 from "../assets/onboarding_grad_proj_img1.png"
 import image2 from "../assets/onboarding_grad_proj_img2.png"
 import image3 from "../assets/onboarding_grad_proj_img3.png"
 import blog_image_1 from "../assets/blog_grad_proj_book_img.jpeg"
 import blog_image_2 from "../assets/blog_grad_proj_book_img_2.jpeg"
+import blog_image_3 from "../assets/blog_grad_proj_book_img_3.jpeg"
+import blog_image_4 from "../assets/blog_grad_proj_book_img_4.jpeg"
 
 
 export const books: Array<IBook> = [
@@ -20,13 +22,13 @@ export const books: Array<IBook> = [
         rating: "4.4",
     },
     {
-        image_src: blog_image_1,
+        image_src: blog_image_3,
         book_name: "The Name of the Win",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
-        image_src: blog_image_2,
+        image_src: blog_image_4,
         book_name: "The Name of the Wi",
         author_name: "Brandon Sanderson",
         rating: "4.4",
@@ -44,13 +46,13 @@ export const books: Array<IBook> = [
         rating: "4.4",
     },
     {
-        image_src: blog_image_1,
+        image_src: blog_image_3,
         book_name: "TName of the Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
-        image_src: blog_image_2,
+        image_src: blog_image_4,
         book_name: "Name of the Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
@@ -68,13 +70,13 @@ export const books: Array<IBook> = [
         rating: "4.4",
     },
     {
-        image_src: blog_image_1,
+        image_src: blog_image_3,
         book_name: "The Name of thy Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",
     },
     {
-        image_src: blog_image_2,
+        image_src: blog_image_4,
         book_name: "The Name of 09he Wind",
         author_name: "Brandon Sanderson",
         rating: "4.4",

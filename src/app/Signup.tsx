@@ -1,7 +1,5 @@
 import Icon from "../components/Icon"
 import image from "../assets/signup_grad_proj_img.jpeg"
-// import { signup_inputs } from "../utils/constants"
-// import Input from "../components/Input"
 import { useState } from "react"
 // import { useUserStore } from "../store/authStore"
 import { useNavigate } from "react-router-dom"
@@ -129,17 +127,6 @@ const Signup = () => {
                         <label htmlFor="my-re-password" className="text-[18px] font-bold italic">Confirm Password</label>
                         <input type="password" id="my-re-password" className="border border-sky-400 py-1 px-1.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Re-enter the password"/>
                     </div>
-                    {/* {signup_inputs.map(input => (
-                      <Input
-                      div_class={input.div_class}
-                      label_class={input.label_class}
-                      label_text={input.label_text}
-                      input_id={input.input_id}
-                      input_type={input.input_type}
-                      input_class={input.input_class}
-                      placeholder={input.placeholder}
-                      />
-                    ))} */}
                 </form>
                 {/* onClick={handleSignup} */}
                 <button disabled={!(formik.isValid && formik.dirty)} type="submit" className="mt-2 text-white bg bg-main-color w-full py-2 rounded-3xl font-bold">Sign up</button>

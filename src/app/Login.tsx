@@ -32,7 +32,7 @@ const Login = () => {
     // }
 
     if (isValid(email, password)) {
-      navigate("/home")
+      navigate("/home/blog")
     }
 
 
