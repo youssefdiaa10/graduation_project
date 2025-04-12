@@ -3,7 +3,6 @@ import Login from './app/Login'
 import Signup from './app/Signup'
 import Home from './app/Home'
 import Onboarding from './app/Onboarding'
-import PlanSelection from './app/PlanSelection'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ProtectedRoute from './components/ProtectedRoute'
 import { motion } from "framer-motion"
@@ -69,10 +68,6 @@ const router = createBrowserRouter([
         element: <ProtectedRoute><Chat/></ProtectedRoute>
       },
     ]
-  },
-  {
-    path: "/plans",
-    element: <ProtectedRoute><PlanSelection/></ProtectedRoute>
   },
 ])
 
