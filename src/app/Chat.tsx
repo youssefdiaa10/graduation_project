@@ -11,7 +11,7 @@ const Chat = () => {
         <div className="px-5 relative h-full py-5 flex flex-col justify-between">
             <div className="flex bg-white rounded-2xl shadow-xl justify-center">
                 <div className="flex items-center gap-3">
-                    <h1 className="font-bold text-[40px] italic text-secondary-color">Bookly</h1>
+                    <h1 className="font-bold text-[40px] italic text-main-color">Bookly</h1>
                     <div>🟢</div>
                 </div>
             </div>
