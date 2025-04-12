@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { books } from "../utils/constants";
 import { IBook } from "../utils/types";
 import { useFavoriteBooks } from "../context/FavoriteContext";
+import { useReadingBooks } from "../context/ReadingContext";
 
 const BookItem = () => {
 
@@ -12,6 +13,8 @@ const BookItem = () => {
     const [isHeart, setIsHeart] = useState<boolean>(false)
 
     const { addBookToFavorite, removeBookFromFavorite, isFavorite } = useFavoriteBooks()
+
+    const { addBookToReading } = useReadingBooks()
 
     const imgRef = useRef<HTMLImageElement | null>(null);
     const [color, setColor] = useState<number[] | null>(null);
@@ -96,7 +99,7 @@ const BookItem = () => {
             </div>
 
             <div className="bg-blue-600 flex items-baseline my-10 justify-center gap-20 w-full mx-auto py-5 rounded-3xl">
-                <button className="text-[30px] font-bold italic text-white">Read Now</button>
+                <button onClick={() => addBookToReading(book)} className="text-[30px] font-bold italic text-white">Read Now</button>
                 <div className="flex gap-5 items-center">
                     <h1 className="text-white text-[35px] font-extralight">|</h1>
                     {

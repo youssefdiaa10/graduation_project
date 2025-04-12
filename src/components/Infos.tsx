@@ -34,7 +34,7 @@ export const Infos = () => {
                         <h1 className="font-bold">Recommendation</h1>
                     </NavLink>
 
-                    <NavLink onClick={handleAccordion} to={"/"} className={`transition duration-300 hover:text-white hover:bg-blue-500 bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5`}>
+                    <NavLink onClick={handleAccordion} to={"/home/reading"} className={`transition duration-300 hover:text-white hover:bg-blue-500 bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5`}>
                         <FaHistory className="text-[20px] ml-5 mr-2"/>
                         <h1 className="font-bold">Reading History</h1>
                     </NavLink>

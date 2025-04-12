@@ -15,6 +15,8 @@ import Recommendation from './app/Recommendation'
 import Genre from './app/Genre'
 import Favorite from './app/Favorite'
 import { FavoriteBooksProvider } from './context/FavoriteContext'
+import Reading from './app/Reading'
+import { ReadingBooksProvider } from './context/ReadingContext'
 
 
 const router = createBrowserRouter([
@@ -55,6 +57,10 @@ const router = createBrowserRouter([
         element: <ProtectedRoute><Favorite/></ProtectedRoute>
       },
       {
+        path: "/home/reading",
+        element: <ProtectedRoute><Reading/></ProtectedRoute>
+      },
+      {
         path: "/home/genre/:genre_name",
         element: <ProtectedRoute><Genre/></ProtectedRoute>
       },
@@ -73,11 +79,13 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <FavoriteBooksProvider>
-      <motion.div initial="hidden" animate="visible">
-        <RouterProvider router={router}/>
-      </motion.div>
-    </FavoriteBooksProvider>
+    <ReadingBooksProvider>
+        <FavoriteBooksProvider>
+            <motion.div initial="hidden" animate="visible">
+                <RouterProvider router={router}/>
+            </motion.div>
+        </FavoriteBooksProvider>
+    </ReadingBooksProvider>
   )
 }
 
