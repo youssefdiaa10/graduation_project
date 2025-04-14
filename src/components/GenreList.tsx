@@ -19,7 +19,7 @@ const GenreList = ({
 
   return (
     <>
-        <Link onClick={handleAccordion} to={`/home/genre/${text}`} className="font-bold my-1.5 text-black text-[20px] flex items-end gap-5 w-fit px-2 py-2 rounded-2xl hover:bg-secondary hover:text-white hover:translate-x-1.5 transition duration-200">{text} <GoArrowRight className="text-[24px]"/></Link>
+        <Link onClick={handleAccordion} to={`/home/genre/${text}`} className="font-bold my-1.5 text-black text-[20px] flex items-end gap-5 w-fit px-2 py-2 rounded-2xl hover:bg-main hover:text-white hover:translate-x-1.5 transition duration-200">{text} <GoArrowRight className="text-[24px]"/></Link>
     </>
   )
 }

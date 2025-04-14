@@ -12,14 +12,14 @@ const Onboarding = () => {
 
             <div className="flex flex-col items-center">
                 <motion.div variants={slideInFromTop(1)}>
-                    <h1 className="text-secondary-color text-2xl font-bold italic mb-6"><span className="text-[50px]">Unlimited Books, and more</span> <br /></h1>
-                    <h1 className="text-secondary-color text-2xl font-bold italic">Ready to Read? Enter your email/phone number <br /> to create or restart your membership.</h1>
+                    <h1 className="text-main text-2xl font-bold italic mb-6"><span className="text-[50px]">Unlimited Books, and more</span> <br /></h1>
+                    <h1 className="text-main text-2xl font-bold italic">Ready to Read? Enter your email/phone number.</h1>
                     <div className="mt-7 flex">
                         <Link to={"/login"}>
                             <motion.button
                             variants={slideInFromLeft(1.5)}
-                            whileHover={{backgroundColor: "#0261A0"}}
-                            style={{backgroundColor: "#003659"}}
+                            whileHover={{backgroundColor: "#0000b5"}}
+                            style={{backgroundColor: "#000080"}}
                             className="text-[30px] py-2 italic text-white px-6 font-bold rounded-2xl">
                                 Login
                             </motion.button>
@@ -27,8 +27,8 @@ const Onboarding = () => {
                         <Link to={"/signup"}>
                             <motion.button
                             variants={slideInFromRight(1.5)}
-                            whileHover={{backgroundColor: "#0261A0"}}
-                            style={{backgroundColor: "#003659"}}
+                            whileHover={{backgroundColor: "#0000b5"}}
+                            style={{backgroundColor: "#000080"}}
                             className="ml-5 text-[30px] py-2 italic text-white px-6 font-bold rounded-2xl">
                                 Sign up
                             </motion.button>
