@@ -1,4 +1,4 @@
-import { FaHome, FaRegLightbulb, FaHeart, FaHistory } from "react-icons/fa";
+import { FaHome, FaHeart, FaHistory } from "react-icons/fa";
 import { BsChatLeftText } from "react-icons/bs";
 import image from "../assets/infos/info_grad_proj_profile_img.jpg"
 import { NavLink } from "react-router-dom";
