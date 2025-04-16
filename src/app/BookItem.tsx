@@ -98,10 +98,10 @@ const BookItem = () => {
                 <h1 className="bg-gray-300 py-1 px-5 text-[16px] rounded-2xl">Fiction</h1>
             </div>
 
-            <div className="bg-blue-600 flex items-baseline my-10 justify-center gap-20 w-full mx-auto py-5 rounded-3xl">
-                <button onClick={() => addBookToReading(book)} className="text-[30px] font-bold italic text-white">Read Now</button>
+            <div className="bg-blue-600 flex items-center my-10 justify-center gap-20 w-full mx-auto py-5 rounded-3xl">
+                <button onClick={() => addBookToReading(book)} className="text-[40px] py-2 px-3 font-bold italic text-white">Read Now</button>
                 <div className="flex gap-5 items-center">
-                    <h1 className="text-white text-[35px] font-extralight">|</h1>
+                    <h1 className="text-white text-[45px] font-light">|</h1>
                     {
                         isHeart ?
                         <IoHeartSharp
@@ -110,7 +110,7 @@ const BookItem = () => {
                             removeBookFromFavorite(book.book_name)
                         }
                         }
-                        className="text-[40px] mt-2 text-red-500"/>
+                        className="text-[60px] mt-2 text-red-500"/>
                         :
                         <IoHeartOutline
                         onClick={() => {
@@ -118,7 +118,7 @@ const BookItem = () => {
                             addBookToFavorite(book)
                         }
                         }
-                        className="text-[40px] mt-2 text-white"/>
+                        className="text-[60px] mt-2 text-white"/>
                     }
                 </div>
             </div>
