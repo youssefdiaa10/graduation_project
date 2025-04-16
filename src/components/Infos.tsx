@@ -29,11 +29,6 @@ export const Infos = () => {
                         <h1 className="font-bold">Home Screen</h1>
                     </NavLink>
 
-                    {/* <NavLink onClick={handleAccordion} to={"/home/recommendation"} className={`transition duration-300 hover:text-white hover:bg-main bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5`}>
-                        <FaRegLightbulb className="text-[20px] ml-5 mr-2"/>
-                        <h1 className="font-bold">Recommendation</h1>
-                    </NavLink> */}
-
                     <NavLink onClick={handleAccordion} to={"/home/reading"} className={`transition duration-300 hover:text-white hover:bg-main bg-white rounded-2xl py-4 flex items-center my-5 gap-2 mx-5`}>
                         <FaHistory className="text-[20px] ml-5 mr-2"/>
                         <h1 className="font-bold">Reading History</h1>
