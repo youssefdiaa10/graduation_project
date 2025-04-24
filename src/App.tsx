@@ -1,21 +1,26 @@
-import './App.css'
-import Login from './app/Login'
-import Signup from './app/Signup'
-import Home from './app/Home'
-import Onboarding from './app/Onboarding'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import ProtectedRoute from './components/ProtectedRoute'
 import { motion } from "framer-motion"
-import BookItem from './app/BookItem'
-import Search from './app/Search'
-import Blog from './app/Blog'
-import Chat from './app/Chat'
-import Recommendation from './app/Recommendation'
-import Genre from './app/Genre'
-import Favorite from './app/Favorite'
 import { FavoriteBooksProvider } from './context/FavoriteContext'
-import Reading from './app/Reading'
 import { ReadingBooksProvider } from './context/ReadingContext'
+import { CategoryProvider } from './context/CategoryContext'
+import "./App.css"
+import Login from './app/user/Login'
+import Signup from './app/user/Signup'
+import Home from './app/user/Home'
+import Onboarding from './app/user/Onboarding'
+import ProtectedRoute from './components/ProtectedRoute'
+import BookItem from './app/user/BookItem'
+import Recommendation from './app/user/Recommendation'
+import Search from './app/user/Search'
+import Blog from './app/user/Blog'
+import Chat from './app/user/Chat'
+import Genre from './app/user/Genre'
+import Favorite from './app/user/Favorite'
+import Reading from './app/user/Reading'
+import Category from './app/user/Category'
+import YouMayLike from './app/user/YouMayLike'
+import BookViewer from './app/user/BookViewer'
+import PopularNow from './app/user/PopularNow'
 
 
 const router = createBrowserRouter([
@@ -36,6 +41,14 @@ const router = createBrowserRouter([
     element: <ProtectedRoute><BookItem/></ProtectedRoute>
   },
   {
+    path: "/home/book_reader",
+    element: <ProtectedRoute><BookViewer/></ProtectedRoute>
+  },
+  {
+    path: "/category",
+    element: <ProtectedRoute><Category/></ProtectedRoute>
+  },
+  {
     path: "/home",
     element: <ProtectedRoute><Home/></ProtectedRoute>,
     children: [
@@ -50,6 +63,14 @@ const router = createBrowserRouter([
       {
         path: "/home/recommendation",
         element: <ProtectedRoute><Recommendation/></ProtectedRoute>
+      },
+      {
+        path: "/home/popular_now",
+        element: <ProtectedRoute><PopularNow/></ProtectedRoute>
+      },
+      {
+        path: "/home/you_may_like",
+        element: <ProtectedRoute><YouMayLike/></ProtectedRoute>
       },
       {
         path: "/home/favorite",
@@ -74,13 +95,15 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <ReadingBooksProvider>
+    <CategoryProvider>
+      <ReadingBooksProvider>
         <FavoriteBooksProvider>
             <motion.div initial="hidden" animate="visible">
-                <RouterProvider router={router}/>
+              <RouterProvider router={router}/>
             </motion.div>
         </FavoriteBooksProvider>
-    </ReadingBooksProvider>
+      </ReadingBooksProvider>
+    </CategoryProvider>
   )
 }
 

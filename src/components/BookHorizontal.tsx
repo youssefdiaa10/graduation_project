@@ -4,18 +4,25 @@ import { IoHeartOutline, IoHeartSharp } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 import { useFavoriteBooks } from '../context/FavoriteContext'
 
-export const BookSearch = ({
+
+type Props = IBook & { type: "search" | "favorite" | "history" }
+
+
+export const BookHorizontal = ({
     image_src,
     book_name,
     author_name,
-    rating } : IBook) => {
+    category,
+    discription,
+    rating,
+    type, } : Props) => {
 
     const { addBookToFavorite, removeBookFromFavorite, isFavorite } = useFavoriteBooks()
     const favorite = isFavorite(book_name)
 
     return (
     <>
-        <div className="py-4 bg-gray-200 rounded-2xl shadow-xl px-5 flex justify-between my-5">
+        <div className="py-4 bg-white rounded-2xl shadow-xl px-5 flex justify-between my-5">
             <div className="flex gap-3.5">
                 <Link to={`/home/${book_name}`}>
                     <img src={image_src} className="rounded-2xl" alt="book cover" width={100} />
@@ -30,6 +37,10 @@ export const BookSearch = ({
                 </div>
             </div>
             {
+                type !== "favorite"
+                ?
+                ""
+                :
                 favorite ?
                 <IoHeartSharp
                 onClick={() => {
@@ -39,9 +50,9 @@ export const BookSearch = ({
                 :
                 <IoHeartOutline
                 onClick={() => {
-                    addBookToFavorite({ image_src, book_name, author_name, rating })
+                    addBookToFavorite({ image_src, book_name, author_name, category, discription, rating })
                 }}
-                className="text-[60px] my-auto mr-10 text-white"/>
+                className="text-[60px] my-auto mr-10 text-gray-400"/>
             }
         </div>
     </>

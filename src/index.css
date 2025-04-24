@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-main: #000080;
-  --color-secondary: #0000b5;
+  --color-main: #00395E;
+  --color-secondary: #00538a;
 }
+
+
 
 @layer components {
   .text-main-color {
