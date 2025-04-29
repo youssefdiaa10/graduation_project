@@ -5,8 +5,26 @@ import { Book } from "../../components/Book"
 import { GoArrowRight } from "react-icons/go"
 import { Link } from "react-router-dom"
 import { useCategory } from "../../context/CategoryContext"
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 const Blog = () => {
+
+    const [myBook, setMyBook] = useState([])
+
+    const geQuote = () => {
+        axios.get("http://smartshelf.runasp.net/api/Book/GetRandomBooks")
+        .then(request => {
+            console.log(request.data)
+            setMyBook(request.data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    useEffect(() => {
+        geQuote()
+    },[])
 
     const { category } = useCategory()
 

@@ -1,8 +1,8 @@
-import Icon from "../../components/Icon"
 import image from "../assets/login/login_grad_proj_img.jpeg"
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
-import { useUserStore } from "../../store/authStore"
+import { useUserStore } from "../store/authStore"
+import Icon from './../components/Icon';
 
 const Login = () => {
 

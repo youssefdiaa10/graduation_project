@@ -4,8 +4,8 @@ import { FavoriteBooksProvider } from './context/FavoriteContext'
 import { ReadingBooksProvider } from './context/ReadingContext'
 import { CategoryProvider } from './context/CategoryContext'
 import "./App.css"
-import Login from './app/user/Login'
-import Signup from './app/user/Signup'
+import Signup from './app/Signup'
+import Login from './app/Login'
 import Home from './app/user/Home'
 import Onboarding from './app/user/Onboarding'
 import ProtectedRoute from './components/ProtectedRoute'
@@ -21,6 +21,11 @@ import Category from './app/user/Category'
 import YouMayLike from './app/user/YouMayLike'
 import BookViewer from './app/user/BookViewer'
 import PopularNow from './app/user/PopularNow'
+import AdminOnboarding from './app/admin/AdminOnboarding'
+import AdminChat from './app/admin/AdminChat'
+import AdminSelectCategory from './app/admin/AdminSelectCategory'
+import AdminAddBook from './app/admin/AdminAddBook'
+// import { UserProvider } from './context/UserContext'
 
 
 const router = createBrowserRouter([
@@ -36,6 +41,26 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Signup/>
   },
+
+
+  {
+    path: "/admin",
+    element: <ProtectedRoute><AdminOnboarding/></ProtectedRoute>,
+  },
+  {
+    path: "/admin/chat",
+    element: <ProtectedRoute><AdminChat/></ProtectedRoute>
+  },
+  {
+    path: "/admin/select_category",
+    element: <ProtectedRoute><AdminSelectCategory/></ProtectedRoute>
+  },
+  {
+    path: "/admin/select_category/:category_name",
+    element: <ProtectedRoute><AdminAddBook/></ProtectedRoute>
+  },
+
+
   {
     path: "/home/:book_name",
     element: <ProtectedRoute><BookItem/></ProtectedRoute>
@@ -95,15 +120,17 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <CategoryProvider>
-      <ReadingBooksProvider>
-        <FavoriteBooksProvider>
+    // <UserProvider>
+      <CategoryProvider>
+        <ReadingBooksProvider>
+          <FavoriteBooksProvider>
             <motion.div initial="hidden" animate="visible">
               <RouterProvider router={router}/>
             </motion.div>
-        </FavoriteBooksProvider>
-      </ReadingBooksProvider>
-    </CategoryProvider>
+          </FavoriteBooksProvider>
+        </ReadingBooksProvider>
+      </CategoryProvider>
+    // </UserProvider>
   )
 }
 
