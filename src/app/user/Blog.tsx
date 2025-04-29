@@ -1,4 +1,3 @@
-import { books } from "../../utils/constants"
 import { motion } from "framer-motion"
 import { slideInFromRight, slideInFromTop } from "../../utils/motion"
 import { Book } from "../../components/Book"
@@ -6,24 +5,15 @@ import { GoArrowRight } from "react-icons/go"
 import { Link } from "react-router-dom"
 import { useCategory } from "../../context/CategoryContext"
 import { useEffect, useState } from "react"
-import axios from "axios"
+import { useBookStore } from "../../store/bookStore"
 
 const Blog = () => {
 
-    const [myBook, setMyBook] = useState([])
-
-    const geQuote = () => {
-        axios.get("http://smartshelf.runasp.net/api/Book/GetRandomBooks")
-        .then(request => {
-            console.log(request.data)
-            setMyBook(request.data)
-        }).catch(error => {
-            console.log(error)
-        })
-    }
+    const { topBooks, randomBooks, getTopBooks, getRandomBooks } = useBookStore()
 
     useEffect(() => {
-        geQuote()
+        getTopBooks()
+        getRandomBooks()
     },[])
 
     const { category } = useCategory()
@@ -42,21 +32,21 @@ const Blog = () => {
                 </Link>
             </div>
             <div className="bg-gray-100 rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
-                {books.map(book => {
-                    if (book.rating >= 4.5) {
-                        return (
-                            <Book
-                            key={book.book_name}
-                            image_src={book.image_src}
-                            book_name={book.book_name}
-                            author_name={book.author_name}
-                            category={book.category}
-                            discription={book.discription}
-                            rating={book.rating}
-                            />
-                        )
-                    }
-                })}
+                {topBooks.map(book => (
+                    <Book
+                    key={book.name}
+                    id= {book.id}                    
+                    name= {book.name}
+                    author= {book.author}
+                    description= {book.description}
+                    fileURL= {book.fileURL}
+                    categoryName= {book.categoryName}
+                    publishedYear= {book.publishedYear}
+                    averageRating= {book.averageRating}
+                    numPages= {book.numPages}
+                    linkBook= {book.linkBook}
+                    />
+                ))}
             </div>
         </motion.div>
 
@@ -69,7 +59,7 @@ const Blog = () => {
             ""
             :
             <>
-                <motion.div variants={slideInFromTop(.5)} className="ml-7 my-10 mr-5">
+                {/* <motion.div variants={slideInFromTop(.5)} className="ml-7 my-10 mr-5">
                     <div className="flex justify-between items-baseline">
                         <motion.h1 variants={slideInFromRight(1)} className="text-[27px] my-3 mx-5 font-bold text-main">You May like</motion.h1>
                         <Link to={`/home/you_may_like`}>
@@ -90,7 +80,7 @@ const Blog = () => {
                                         book_name={book.book_name}
                                         author_name={book.author_name}
                                         category={book.category}
-                                        discription={book.discription}
+                                        description={book.description}
                                         rating={book.rating}
                                         />
                                     )
@@ -98,7 +88,7 @@ const Blog = () => {
                             })
                         })}
                     </div>
-                </motion.div>
+                </motion.div> */}
             </>
         }
 
@@ -116,15 +106,19 @@ const Blog = () => {
                 </Link>
             </div>
             <div className="bg-gray-100 rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
-                {books.map(book => (
+                {randomBooks.map(book => (
                     <Book
-                    key={book.book_name}
-                    image_src={book.image_src}
-                    book_name={book.book_name}
-                    author_name={book.author_name}
-                    category={book.category}
-                    discription={book.discription}
-                    rating={book.rating}
+                    key={book.name}
+                    id= {book.id}                    
+                    name= {book.name}
+                    author= {book.author}
+                    description= {book.description}
+                    fileURL= {book.fileURL}
+                    categoryName= {book.categoryName}
+                    publishedYear= {book.publishedYear}
+                    averageRating= {book.averageRating}
+                    numPages= {book.numPages}
+                    linkBook= {book.linkBook}
                     />
                 ))}
             </div>

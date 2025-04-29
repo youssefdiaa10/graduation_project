@@ -155,7 +155,7 @@ const BookItem = () => {
             </div>
 
             <div className="mt-3 mb-5 flex gap-5 ">
-                <h1 className="bg-gray-200 text-center rounded-2xl text-[18px] py-4 px-5">{book.discription}</h1>
+                <h1 className="bg-gray-200 text-center rounded-2xl text-[18px] py-4 px-5">{book.description}</h1>
 
                 {/* <button className="bg-blue-600 text-[40px] h-fit py-3 px-9 w-full text-white">Rate Now</button> */}
             </div>

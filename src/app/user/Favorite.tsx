@@ -19,7 +19,7 @@ const Favorite = () => {
                 book_name={book.book_name}
                 author_name={book.author_name}
                 category={book.category}
-                discription={book.discription}
+                description={book.description}
                 rating={book.rating}
                 type="favorite"
                 />

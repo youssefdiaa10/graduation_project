@@ -6,13 +6,16 @@ import { useGenreShowStore } from "../store/genreShowStore"
 // import { IoHeartOutline, IoHeartSharp } from "react-icons/io5"
 
 export const Book = ({
-    image_src,
-    book_name,
-    author_name,
+    fileURL,
+    name,
+    author,
     // category,
-    rating } : IBook) => {
+    averageRating } : IBook) => {
 
         const { isShow, setIsShow } = useGenreShowStore()
+
+        let rating = String(averageRating)
+        rating = rating.slice(0, 3)
 
         // const { addBookToFavorite, removeBookFromFavorite, isFavorite } = useFavoriteBooks()
         // const favorite = isFavorite(book_name)
@@ -26,12 +29,12 @@ export const Book = ({
   return (
     <>
         <div className="shrink-0 w-[200px] flex flex-col gap-5 justify-between bg-white my-2 p-4 shadow-xl cursor-pointer hover:scale-105 transition duration-300">
-            <Link onClick={handleAccordion} to={`/home/${book_name}`} className="">
-                <img src={image_src} alt="book cover" className="rounded-2xl m-auto"/>
+            <Link onClick={handleAccordion} to={`/home/${name}`} className="">
+                <img src={fileURL} alt="book cover" className="rounded-2xl m-auto"/>
             </Link>
             <div className="text-center">
-                <h1 className="text-[16px] text-wrap">{book_name}</h1>
-                <h1 className="text-[13px] text-gray-600">{author_name}</h1>
+                <h1 className="text-[16px] text-wrap">{name}</h1>
+                <h1 className="text-[13px] text-gray-600">{author}</h1>
                 <div className="flex gap-8 items-center justify-center mt-2">
                     <div className="flex gap-2 items-center">
                         <span className="text-[17px]">{rating}</span>

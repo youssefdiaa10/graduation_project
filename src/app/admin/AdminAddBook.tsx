@@ -13,13 +13,13 @@ const AdminAddBook = () => {
     let book_name = ""
     let author_name = ""
     let category = category_name
-    let discription = ""
+    let description = ""
     let new_rating = ""
 
     function handleAdd() {
         const rating = Number(new_rating)
         if (category !== undefined) {
-            setNewBook({ image_src, book_name, author_name, category, discription, rating })
+            setNewBook({ image_src, book_name, author_name, category, description, rating })
             if (newBook !== null) {
                 books.push(newBook)
                 console.log(newBook)
@@ -46,8 +46,8 @@ const AdminAddBook = () => {
             </div>
 
             <div className="w-full flex flex-col my-3">
-                <label htmlFor="book-discription" className="text-center font-bold text-[21px]">Book Discription</label>
-                <input onChange={(event) => discription = event.target.value} id="book-category" className="border border-black rounded-2xl py-1 mt-3 px-5" placeholder="Add Author" type="text" />
+                <label htmlFor="book-description" className="text-center font-bold text-[21px]">Book description</label>
+                <input onChange={(event) => description = event.target.value} id="book-category" className="border border-black rounded-2xl py-1 mt-3 px-5" placeholder="Add Author" type="text" />
             </div>
 
             <div className="w-full flex flex-col my-3">

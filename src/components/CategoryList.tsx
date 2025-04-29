@@ -1,20 +1,21 @@
 import { useCategory } from '../context/CategoryContext';
 import { ICategory } from '../utils/types';
 const CategoryList = ({
-    categoryName,
+    id,
+    name,
 }: ICategory) => {
 
     const { addCategory, removeCategory, isCategory } = useCategory()
-    const is_category: boolean = isCategory(categoryName)
+    const is_category: boolean = isCategory(name)
 
   return (
     <h1
     onClick={() => {
         if (is_category === true) {
-            removeCategory(categoryName)
+            removeCategory(name)
         }
         else{
-            addCategory({ categoryName })
+            addCategory({ id, name })
         }
     }}
     className={`
@@ -28,7 +29,7 @@ const CategoryList = ({
         }
     `}>
         {/* <h1 className='text-[16px] text-black'>{categoryName}</h1> */}
-        {categoryName}
+        {name}
     </h1>
   )
 }

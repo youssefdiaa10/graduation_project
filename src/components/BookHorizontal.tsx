@@ -9,29 +9,33 @@ type Props = IBook & { type: "search" | "favorite" | "history" }
 
 
 export const BookHorizontal = ({
-    image_src,
-    book_name,
-    author_name,
-    category,
-    discription,
-    rating,
+    id,
+    publishedYear,
+    numPages,
+    linkBook,
+    fileURL,
+    name,
+    author,
+    categoryName,
+    description,
+    averageRating,
     type, } : Props) => {
 
     const { addBookToFavorite, removeBookFromFavorite, isFavorite } = useFavoriteBooks()
-    const favorite = isFavorite(book_name)
+    const favorite = isFavorite(name)
 
     return (
     <>
         <div className="py-4 bg-white rounded-2xl shadow-xl px-5 flex justify-between my-5">
             <div className="flex gap-3.5">
-                <Link to={`/home/${book_name}`}>
-                    <img src={image_src} className="rounded-2xl" alt="book cover" width={100} />
+                <Link to={`/home/${name}`}>
+                    <img src={fileURL} className="rounded-2xl" alt="book cover" width={100} />
                 </Link>
                 <div className="flex flex-col">
-                    <h1 className="text-[20px] font-bold mt-2 italic">{book_name}</h1>
-                    <h1 className="italic text-gray-400 my-2">{author_name}</h1>
+                    <h1 className="text-[20px] font-bold mt-2 italic">{name}</h1>
+                    <h1 className="italic text-gray-400 my-2">{author}</h1>
                         <div className="flex gap-2 items-center">
-                            <span>{rating}</span>
+                            <span>{averageRating}</span>
                             <FaStar className="text-yellow-300"/>
                         </div>
                 </div>
@@ -44,13 +48,13 @@ export const BookHorizontal = ({
                 favorite ?
                 <IoHeartSharp
                 onClick={() => {
-                    removeBookFromFavorite(book_name)
+                    removeBookFromFavorite(name)
                 }}
                 className="text-[60px] my-auto mr-10 text-red-500"/>
                 :
                 <IoHeartOutline
                 onClick={() => {
-                    addBookToFavorite({ image_src, book_name, author_name, category, discription, rating })
+                    addBookToFavorite({ fileURL, name, author, categoryName, description, averageRating, id, publishedYear, numPages, linkBook, })
                 }}
                 className="text-[60px] my-auto mr-10 text-gray-400"/>
             }

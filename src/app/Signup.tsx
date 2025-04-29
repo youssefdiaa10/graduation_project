@@ -120,36 +120,36 @@ const Signup = () => {
         </div>
         <div className="px-14">
             <div className="mt-14">
-                <h1 className="italic text-[32px] font-bold text-main-color">Create Your Account</h1>
+                <h1 className="text-[32px] font-bold text-main-color">Create Your Account</h1>
 
                 {/* onSubmit={formik.handleSubmit} */}
                 <form className="my-10">
 
                     <div className="flex flex-col my-4">
-                        <label htmlFor="my-name" className="text-[18px] font-bold italic">Name</label>
+                        <label htmlFor="my-name" className="text-[18px] font-bold">Name</label>
                         {/* onBlur={formik.handleBlur} onChange={formik.handleChange} */}
-                        <input type="text" id="my-name" className="border border-sky-400 py-1 px-1.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your Name"/>
+                        <input type="text" id="my-name" className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your Name"/>
                         {/* {formik.errors.name && formik.touched.name ? (<div className="bg-red-400 text-red-800 py-3 px-5">{formik.errors.name}</div>) : ("")} */}
                     </div>
 
                     <div className="flex flex-col my-4">
-                        <label htmlFor="my-email" className="text-[18px] font-bold italic">Email</label>
+                        <label htmlFor="my-email" className="text-[18px] font-bold">Email</label>
                         {/* onBlur={formik.handleBlur} onChange={formik.handleChange} */}
-                        <input type="email" id="my-email" className="border border-sky-400 py-1 px-1.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your Email"/>
+                        <input type="email" id="my-email" className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your Email"/>
                         {/* {formik.errors.email && formik.touched.email ? (<div className="bg-red-400 text-red-800 py-3 px-5">{formik.errors.email}</div>) : ("")} */}
                     </div>
 
                     <div className="flex flex-col my-4">
-                        <label htmlFor="my-password" className="text-[18px] font-bold italic">Password</label>
+                        <label htmlFor="my-password" className="text-[18px] font-bold">Password</label>
                         {/* onBlur={formik.handleBlur} onChange={formik.handleChange} */}
-                        <input type="password" id="my-password" className="border border-sky-400 py-1 px-1.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your password"/>
+                        <input type="password" id="my-password" className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your password"/>
                         {/* {formik.errors.password && formik.touched.password ? (<div className="bg-red-400 text-red-800 py-3 px-5">{formik.errors.password}</div>) : ("")} */}
                     </div>
 
                     <div className="flex flex-col my-4">
-                        <label htmlFor="my-re-password" className="text-[18px] font-bold italic">Confirm Password</label>
+                        <label htmlFor="my-re-password" className="text-[18px] font-bold">Confirm Password</label>
                         {/* onBlur={formik.handleBlur} onChange={formik.handleChange} */}
-                        <input type="password" id="my-re-password" className="border border-sky-400 py-1 px-1.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Re-enter the password"/>
+                        <input type="password" id="my-re-password" className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Re-enter the password"/>
                         {/* {formik.errors.rePassword && formik.touched.rePassword ? (<div className="bg-red-400 text-red-800 py-3 px-5">{formik.errors.rePassword}</div>) : ("")} */}
                     </div>
 
