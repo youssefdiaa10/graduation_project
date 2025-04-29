@@ -5,12 +5,16 @@ export interface IOnboardingV1 {
 
 
 export interface IBook {
-    image_src: string;
-    book_name: string;
-    author_name: string;
-    category: string;
-    discription: string;
-    rating: number;
+    id: string
+    name: string;
+    author: string;
+    description: string;
+    fileURL: string;
+    categoryName: string;
+    publishedYear: number;
+    averageRating: number;
+    numPages: number;
+    linkBook: string;
 }
 
 
@@ -42,5 +46,6 @@ export type UserProfile = {
 
 
 export interface ICategory {
-    categoryName: string;
+    id: number;
+    name: string;
 }

@@ -19,8 +19,9 @@ export const GenreAccordion = () => {
         <ul className="bg-white/85 shadow-2xl rounded-2xl cursor-pointer p-2 grid grid-cols-4">
           {categories.map((category) => (
             <GenreList
-            key={category.categoryName}
-            categoryName={category.categoryName}
+            key={category.name}
+            id={category.id}
+            name={category.name}
             />
           ))}
         </ul>

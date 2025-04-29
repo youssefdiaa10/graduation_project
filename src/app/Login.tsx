@@ -52,15 +52,15 @@ const Login = () => {
         </div>
         <div className="px-14">
             <div className="mt-14">
-                <h1 className="italic text-[32px] font-bold text-main-color">Login Into Your Account!</h1>
+                <h1 className="text-[32px] font-bold text-main-color">Login Into Your Account!</h1>
                 <form action="" className="my-10" method="get">
                     <div className="flex flex-col my-4">
-                        <label htmlFor="my-email" className="text-[18px] font-bold italic">Email</label>
-                        <input onChange={(event) => setEmail(event.target.value)} type="email" id="my-email" className="border border-sky-400 py-1 px-1.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your Email"/>
+                        <label htmlFor="my-email" className="text-[18px] font-bold">Email</label>
+                        <input onChange={(event) => setEmail(event.target.value)} type="email" id="my-email" className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your Email"/>
                     </div>
                     <div className="flex flex-col my-4">
-                        <label htmlFor="my-password" className="text-[18px] font-bold italic">Password</label>
-                        <input onChange={(event) => setPassword(event.target.value)} type="password" id="my-password" className="border border-sky-400 py-1 px-1.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your password"/>
+                        <label htmlFor="my-password" className="text-[18px] font-bold">Password</label>
+                        <input onChange={(event) => setPassword(event.target.value)} type="password" id="my-password" className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your password"/>
                     </div>
                 </form>
                 <button onClick={() => {handleLogin()}} type="submit" className="mt-6 text-white bg bg-main-color w-full py-2 rounded-3xl font-bold">Login</button>

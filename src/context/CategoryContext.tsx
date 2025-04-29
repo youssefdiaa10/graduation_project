@@ -22,11 +22,11 @@ export const CategoryProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
 
     const removeCategory = (categoryName: string) => {
-        setCategory((prev) => prev.filter((category) => category.categoryName !== categoryName));
+        setCategory((prev) => prev.filter((category) => category.name!== categoryName));
     };
 
     const isCategory = (categoryName: string) => {
-        return category.some((category) => category.categoryName === categoryName);
+        return category.some((category) => category.name=== categoryName);
     };
 
     return (

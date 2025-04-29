@@ -1,11 +1,18 @@
 import { books } from "../../utils/constants"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { IoIosSearch } from "react-icons/io"
 import { BookHorizontal } from "../../components/BookHorizontal"
+import { useBookStore } from "../../store/bookStore"
 
 const Search = () => {
 
   const [search, setSearch] = useState<string>("")
+
+  const { allBooks, getAllBooks} = useBookStore()
+
+  useEffect(() => {
+    getAllBooks()
+  }, [getAllBooks()])
 
   let searchContext = ""
 
@@ -24,19 +31,23 @@ const Search = () => {
             <input onChange={(event) => searchContext = event.target.value} className="py-5 outline-0 w-full text-[25px] placeholder:text-gray-700 placeholder:text-[25px] placeholder:pl-5" placeholder="Search" type="text" />
         </div>
         <div id="my-search" className="mt-10 px-7 py-5 bg-gray-100 rounded-4xl inset-shadow-gray-950">
-            {books.filter((item) => {
+            {allBooks.filter((item) => {
               return search.toLowerCase() === ""
               ? ""
-              : item.book_name.toLowerCase().includes(search)
+              : item.name.toLowerCase().includes(search)
             }).map((book) => (
                 <BookHorizontal
-                key={book.book_name}
-                image_src={book.image_src}
-                book_name={book.book_name}
-                author_name={book.author_name}
-                category={book.category}
-                discription={book.discription}
-                rating={book.rating}
+                key={book.name}
+                id= {book.id}                    
+                name= {book.name}
+                author= {book.author}
+                description= {book.description}
+                fileURL= {book.fileURL}
+                categoryName= {book.categoryName}
+                publishedYear= {book.publishedYear}
+                averageRating= {book.averageRating}
+                numPages= {book.numPages}
+                linkBook= {book.linkBook}
                 type="search"
                 />
             ))}

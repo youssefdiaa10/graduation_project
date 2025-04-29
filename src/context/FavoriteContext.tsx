@@ -20,11 +20,11 @@ export const FavoriteBooksProvider: React.FC<{ children: React.ReactNode }> = ({
     }
 
     const removeBookFromFavorite = (bookName: string) => {
-        setFavoriteBooks((prev) => prev.filter((book) => book.book_name !== bookName));
+        setFavoriteBooks((prev) => prev.filter((book) => book.name !== bookName));
     };
 
     const isFavorite = (bookName: string) => {
-        return favoriteBooks.some((book) => book.book_name === bookName);
+        return favoriteBooks.some((book) => book.name === bookName);
     };
 
     return (
