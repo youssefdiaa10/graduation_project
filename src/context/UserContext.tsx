@@ -6,14 +6,14 @@ const UserContext = createContext<{
     setUser: React.Dispatch<React.SetStateAction<IUser>>
 } | undefined>(undefined);
 
-export default function UserProvider({ children }: PropsWithChildren){
+export default function UserProvider({ children }: PropsWithChildren) {
 
     // const [userToken , setUserToken] = useState(null);
     // const [userToken , setUserToken] = useState<IAuth | null>(null);
-    const [user, setUser] = useState<IUser>({ email: "", password: "" })
+    const [user, setUser] = useState<IUser>({ email: "", phone: "", username: "", password: "" })
 
-    return <UserContext.Provider value={{user, setUser}}>
-            {children}
+    return <UserContext.Provider value={{ user, setUser }}>
+        {children}
     </UserContext.Provider>
 }
 
@@ -21,7 +21,7 @@ export default function UserProvider({ children }: PropsWithChildren){
 // eslint-disable-next-line react-refresh/only-export-components
 export const useUser = () => {
     const context = useContext(UserContext)
-    if(!context){
+    if (!context) {
         throw new Error("useUser must be used within a UserProvider")
     }
     return context

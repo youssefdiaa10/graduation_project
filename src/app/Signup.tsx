@@ -1,162 +1,140 @@
 import Icon from "../components/Icon"
 import image from "../assets/signup/signup_grad_proj_img.jpeg"
-// import { useState } from "react"
-// import { useUserStore } from "../store/authStore"
-// import { useNavigate } from "react-router-dom"
+import { useForm, SubmitHandler, Controller } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { signupSchema } from "../utils/schema";
+import { useUserStore } from "../store/authStore";
 
-// import { useFormik } from "formik";
-// import * as Yup from "yup";
-// import axios from "axios";
+
+interface ISignup {
+  email: string;
+  phone: string;
+  username: string;
+  password: string;
+}
 
 const Signup = () => {
 
-  // const [email, setEmail] = useState<string>("")
-  // const [password, setPassword] = useState<string>("")
+  const { signup } = useUserStore()
 
-  // const setUser = useUserStore(state => state.setUser)
-  // const navigate = useNavigate()
-
-
-  //   function handleSignup() {
-
-  //     setUser({email, password})
-
-  //     navigate("/login")
-
-  //     console.log(`Signup ${email}`)
-  //     console.log(`Signup ${password}`)
-
-  // }
-
-
-
-
-  // const [error, setError] = useState("");
-
-  // const [loading, setLoading] = useState(false);
-
-  // const user = {
-  //   name: "",
-  //   email: "",
-  //   password: "",
-  //   rePassword: "",
-  //   // phone: "",
-  // };
-
-  // const valid = Yup.object({
-  //   name: Yup.string()
-  //     .required("Name Required")
-  //     .min(3, "Name min length is 3")
-  //     .max(20, "Name max length is 20"),
-  //   email: Yup.string()
-  //     .required("Email Required")
-  //     .email("Email pattern is Invalid"),
-  //   // phone: Yup.string()
-  //   //   .required("Phone Required")
-  //   //   .matches(/^01[0125][0-9]{8}$/),
-  //   password: Yup.string()
-  //     .required("Password Required")
-  //     .matches(/^[a-zA-Z][a-zA-Z0-9]{6,9}$/),
-  //   rePassword: Yup.string()
-  //     .required("Re-password Required")
-  //     .oneOf([Yup.ref("password")]),
-  // });
-
-
-
-
-  // const navigate = useNavigate();
-
-
-
-
-
-  // async function submitForm(value) {
-  //   setLoading(true);
-
-  //   const { data } = await axios
-  //     .post("https://dummyjson.com/users", value)
-  //     .catch((error) => {
-  //       console.log(error);
-
-  //       setError(error.response.data.message);
-
-  //       setLoading(false);
-  //     });
-
-  //   if (data.message === "success") {
-  //     setLoading(false);
-
-  //     localStorage.setItem("token", data.token);
-
-  //     navigate("/login");
-  //   }
-  // }
-
-
-
-
-  // function submitForm(value){
-  //   console.log(value)
-  // }
-
-  // const formik = useFormik({
-  //   initialValues: user,
-
-  //   onSubmit: submitForm,
-
-  //   validationSchema: valid,
-  // });
-
-
-
-
+  const { handleSubmit, control, formState } = useForm<ISignup>({
+    defaultValues: {
+      email: "",
+      phone: "",
+      username: "",
+      password: "",
+    },
+    resolver: yupResolver(signupSchema)
+  })
+  const onSubmit: SubmitHandler<ISignup> = (data) => {
+    console.log(data)
+    signup(data.email, data.phone, data.username, data.password)
+  }
 
   return (
     <div className="flex justify-evenly h-screen">
       <div className="mt-16">
         <div className="">
-            <Icon text="Bookly" text_className="text-[32px] font-bold italic ml-5 text-main-color"/>
+          <Icon text="Bookly" text_className="text-[32px] font-bold italic ml-5 text-main-color" />
         </div>
         <div className="px-14">
-            <div className="mt-14">
-                <h1 className="text-[32px] font-bold text-main-color">Create Your Account</h1>
+          <div className="mt-14">
+            <h1 className="text-[32px] font-bold text-main-color">Create Your Account</h1>
 
-                {/* onSubmit={formik.handleSubmit} */}
-                <form className="my-10">
 
-                    <div className="flex flex-col my-4">
-                        <label htmlFor="my-name" className="text-[18px] font-bold">Name</label>
-                        {/* onBlur={formik.handleBlur} onChange={formik.handleChange} */}
-                        <input type="text" id="my-name" className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your Name"/>
-                        {/* {formik.errors.name && formik.touched.name ? (<div className="bg-red-400 text-red-800 py-3 px-5">{formik.errors.name}</div>) : ("")} */}
-                    </div>
+            <form onSubmit={handleSubmit(onSubmit)} className="my-10">
+              <div className="flex flex-col my-4">
+                <Controller
+                  name="email"
+                  control={control}
+                  render={({ field }) => <>
+                    <label htmlFor="my-email" className="text-[18px] font-bold">Email</label>
+                    <input
+                      {...field}
+                      type="email"
+                      id="my-email"
+                      className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]"
+                      placeholder="Enter your Email" />
+                    {formState.errors.email && formState.touchedFields.email ? (<div className="bg-red-200 text-red-900 rounded-2xl mt-1.5 py-3 px-3">{formState.errors.email.message}</div>) : ("")}
+                  </>
+                  }
+                />
+              </div>
 
-                    <div className="flex flex-col my-4">
-                        <label htmlFor="my-email" className="text-[18px] font-bold">Email</label>
-                        {/* onBlur={formik.handleBlur} onChange={formik.handleChange} */}
-                        <input type="email" id="my-email" className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your Email"/>
-                        {/* {formik.errors.email && formik.touched.email ? (<div className="bg-red-400 text-red-800 py-3 px-5">{formik.errors.email}</div>) : ("")} */}
-                    </div>
+              <div className="flex flex-col my-4">
+                <Controller
+                  name="username"
+                  control={control}
+                  render={({ field }) => <>
+                    <label htmlFor="my-name" className="text-[18px] font-bold">Name</label>
+                    <input
+                      {...field}
+                      type="text"
+                      id="my-name"
+                      className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]"
+                      placeholder="Enter your Name" />
+                    {formState.errors.username && formState.touchedFields.username ? (<div className="bg-red-200 text-red-900 rounded-2xl mt-1.5 py-3 px-3">{formState.errors.username.message}</div>) : ("")}
+                  </>
+                  }
+                />
+              </div>
 
-                    <div className="flex flex-col my-4">
-                        <label htmlFor="my-password" className="text-[18px] font-bold">Password</label>
-                        {/* onBlur={formik.handleBlur} onChange={formik.handleChange} */}
-                        <input type="password" id="my-password" className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Enter your password"/>
-                        {/* {formik.errors.password && formik.touched.password ? (<div className="bg-red-400 text-red-800 py-3 px-5">{formik.errors.password}</div>) : ("")} */}
-                    </div>
+              <div className="flex flex-col my-4">
+                <Controller
+                  name="phone"
+                  control={control}
+                  render={({ field }) => <>
+                    <label htmlFor="my-phone" className="text-[18px] font-bold">Phone</label>
+                    <input
+                      {...field}
+                      type="number"
+                      id="my-phone"
+                      className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]"
+                      placeholder="Enter your Phone" />
+                    {formState.errors.phone && formState.touchedFields.phone ? (<div className="bg-red-200 text-red-900 rounded-2xl mt-1.5 py-3 px-3">Invalid Phone</div>) : ("")}
+                  </>
+                  }
+                />
+              </div>
 
-                    <div className="flex flex-col my-4">
-                        <label htmlFor="my-re-password" className="text-[18px] font-bold">Confirm Password</label>
-                        {/* onBlur={formik.handleBlur} onChange={formik.handleChange} */}
-                        <input type="password" id="my-re-password" className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]" placeholder="Re-enter the password"/>
-                        {/* {formik.errors.rePassword && formik.touched.rePassword ? (<div className="bg-red-400 text-red-800 py-3 px-5">{formik.errors.rePassword}</div>) : ("")} */}
-                    </div>
 
-                </form>
-                {/* <button disabled={!(formik.isValid && formik.dirty)} type="submit" className="mt-2 text-white bg bg-secondary w-full py-2 rounded-3xl font-bold">Sign up</button> */}
+              <div className="flex flex-col my-4">
+                <Controller
+                  name="password"
+                  control={control}
+                  render={({ field }) => <>
+                    <label htmlFor="my-password" className="text-[18px] font-bold">Password</label>
+                    <input
+                      {...field}
+                      type="password"
+                      id="my-password"
+                      className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]"
+                      placeholder="Enter your Password" />
+                    {formState.errors.password && formState.touchedFields.password ? (<div className="bg-red-200 text-red-900 rounded-2xl mt-1.5 py-3 px-3">{
+                      <div className="bg-red-200 text-red-900 rounded-2xl mt-1.5 py-1">
+                        <p>Must be : </p>
+                        <div className="flex flex-col">
+                          <p>* Start with a letter (either uppercase or lowercase).</p>
+                          <p>* Be between 6 and 9 characters in total.</p>
+                          <p>* Can only contain letters (A-Z or a-z) and numbers (0-9)</p>
+                        </div>
+                      </div>
+                    }</div>) : ("")}
+                  </>
+                  }
+                />
+              </div>
 
-        </div>
+              <button
+                disabled={!formState.isValid}
+                type="submit"
+                className={`mt-2 mb-4 disabled:cursor-not-allowed text-white bg-main disabled:bg-secondary w-full py-2 rounded-3xl font-bold`}
+              >
+                Sign up
+              </button>
+            </form>
+
+          </div>
         </div>
       </div>
       <div className="my-8">
