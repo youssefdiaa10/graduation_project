@@ -9,6 +9,7 @@ type BookStore = {
     topBooks: IBook[];
     booksByCategoryName: IBook[],
     bookByID: IBook | null,
+    booksByUserCategories: IBook[];
     loading: boolean;
     error: string | null;
     getAllBooks: () => Promise<void>;
@@ -16,7 +17,8 @@ type BookStore = {
     getTopBooks: () => Promise<void>;
     getBooksByCategoryName: (categoryName: string) => Promise<void>
     getBookByID: (bookID: string) => Promise<void>
-    };
+    getBooksByUserCategories: (userID: string) => Promise<void>
+};
 
 
 export const useBookStore = create<BookStore>((set) => ({
@@ -25,12 +27,13 @@ export const useBookStore = create<BookStore>((set) => ({
     topBooks: [],
     booksByCategoryName: [],
     bookByID: null,
+    booksByUserCategories: [],
     loading: false,
     error: null,
     getAllBooks: async () => {
         // set({ loading: true, error: null });
         try{
-            const response = await axios.get<{ books: IBook[] }>("http://smartshelf.runasp.net/api/Book/GetAll?pageNumber=1&pageSize=4278")
+            const response = await axios.get<{ books: IBook[] }>("http://smartshelf.runasp.net/api/Book/GetAll?pageNumber=1&pageSize=200")
             set({ allBooks: response.data.books, loading: false })
         } catch(error: any){
             set({ error: error.message || 'Failed to fetch books', loading: false });
@@ -72,6 +75,16 @@ export const useBookStore = create<BookStore>((set) => ({
         try{
             const response = await axios.get<IBook>(`http://smartshelf.runasp.net/api/Book/get/${bookID}`)
             set({ bookByID: response.data, loading: false })
+        } catch(error: any){
+            // set({ error: error.message || 'Failed to fetch users', loading: false });
+            console.log(error.message)
+        }
+    },
+    getBooksByUserCategories: async (userId: string) => {
+        // set({ loading: true, error: null });
+        try{
+            const response = await axios.get<IBook[]>(`http://smartshelf.runasp.net/api/Book/GetTopBooksByUserCategories/${userId}`)
+            set({ booksByUserCategories: response.data, loading: false })
         } catch(error: any){
             // set({ error: error.message || 'Failed to fetch users', loading: false });
             console.log(error.message)

@@ -11,7 +11,7 @@ const Genre = () => {
   if (genre_name !== undefined) {
     useEffect(() => {
       getBooksByCategoryName(genre_name)
-    }, [])
+    }, [genre_name])
   }
 
   return (

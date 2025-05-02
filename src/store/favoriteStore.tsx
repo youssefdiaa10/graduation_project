@@ -4,33 +4,40 @@ import { IBook } from "../utils/types";
 
 interface IFavoriteState {
     favoriteBooks: IBook[];
+    categoryIds: number[];
     toggleFavorite: (userId: string, bookId: string) => Promise<void>;
     getFavoriteBooks: (userId: string) => Promise<void>;
+    setFavoriteCategories: (userId: string, categoryIds: number[]) => Promise<void>
 }
 
 export const useFavoriteStore = create<IFavoriteState>((set) => (
     {
         favoriteBooks: [],
+        categoryIds: [],
         toggleFavorite: async (userId, bookId) => {
             try {
                 const response = await axios.post("http://smartshelf.runasp.net/api/Favourite/toggle-favorite", {
                     "userId": userId,
                     "bookId": bookId
                 })
-                console.log("toggleFavorite begins")
-                console.log(response)
-                console.log("toggleFavorite ends")
             } catch (error) {
                 console.log(error)
             }
         },
         getFavoriteBooks: async (userId) => {
             try {
-                const response = await axios.get<{ favoriteBooks: IBook[] }>(`http://smartshelf.runasp.net/api/Favourite/favorites/5?pageNumber=1&pageSize=30&userId=${userId}`)
+                const response = await axios.get<{ favoriteBooks: IBook[] }>(`http://smartshelf.runasp.net/api/Favourite/favorites/${userId}`)
                 set({ favoriteBooks: response.data.favoriteBooks })
-                console.log("getFavoriteBooks begins")
-                console.log(response)
-                console.log("getFavoriteBooks ends")
+            } catch (error) {
+                console.log(error)
+            }
+        },
+        setFavoriteCategories: async (userId, categoryIds) => {
+            try {
+                const response = await axios.post(`http://smartshelf.runasp.net/api/UserCategory/select-categories`, {
+                    "UserId": userId,
+                    "CategoryIds": categoryIds
+                })
             } catch (error) {
                 console.log(error)
             }

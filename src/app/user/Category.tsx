@@ -2,14 +2,22 @@ import { Link } from "react-router-dom"
 import CategoryList from "../../components/CategoryList"
 import { useCategoryStore } from "../../store/categoryStore"
 import { useEffect } from "react"
+import { useFavoriteStore } from "../../store/favoriteStore"
+import { useUserStore } from "../../store/authStore"
 
 const Category = () => {
 
     const { allCategories, getAllCategories } = useCategoryStore()
+    const { categoryIds, setFavoriteCategories } = useFavoriteStore()
+    const { user } = useUserStore()
 
     useEffect(() => {
         getAllCategories()
     }, [])
+
+    function handleSelectCategories(userId: string, ids: number[]) {
+        setFavoriteCategories(userId, ids)
+    }
 
     return (
         <div className="max-w-[700px] my-10 mx-auto mt-20">
@@ -25,7 +33,14 @@ const Category = () => {
                 ))}
             </div>
             <Link to={"/home/blog"}>
-                <button className="hover:bg-main bg-secondary transition duration-300 w-full text-white py-2 text-[20px] rounded-2xl">
+                <button
+                    className="hover:bg-main bg-secondary transition duration-300 w-full text-white py-2 text-[20px] rounded-2xl"
+                    onClick={() => {
+                        if (user?.id) {
+                            handleSelectCategories(user.id, categoryIds)
+                        }
+                    }}
+                >
                     Next
                 </button>
             </Link>

@@ -4,13 +4,14 @@ import { useGenreShowStore } from "../store/genreShowStore"
 import { useBookShowStore } from "../store/bookShowStore"
 
 export const Book = ({
+    id,
     fileURL,
     name,
     author,
     averageRating }: IBook) => {
 
     const { isShow, setIsShow } = useGenreShowStore()
-    const { setBookItemShow } = useBookShowStore()
+    const { setBookItemShow, setBookItemShowId } = useBookShowStore()
 
     let rating = String(averageRating)
     rating = rating.slice(0, 3)
@@ -21,13 +22,13 @@ export const Book = ({
         }
     }
 
-
     return (
         <>
             <div className="shrink-0 w-[200px] flex flex-col gap-5 justify-between bg-white my-2 p-4 shadow-xl cursor-pointer hover:scale-105 transition duration-300">
                 <div onClick={() => {
                     handleAccordion()
-                    setBookItemShow()
+                    setBookItemShow(true)
+                    setBookItemShowId(id)
                 }}>
                     <img src={fileURL} alt="book cover" className="rounded-2xl m-auto" />
                 </div>
@@ -41,7 +42,7 @@ export const Book = ({
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }

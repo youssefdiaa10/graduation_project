@@ -1,4 +1,5 @@
 import { useCategory } from '../context/CategoryContext';
+import { useFavoriteStore } from '../store/favoriteStore';
 import { ICategory } from '../utils/types';
 const CategoryList = ({
     id,
@@ -7,10 +8,16 @@ const CategoryList = ({
 
     const { addCategory, removeCategory, isCategory } = useCategory()
     const is_category: boolean = isCategory(name)
+    const { categoryIds } = useFavoriteStore()
 
     return (
         <h1
             onClick={() => {
+
+                if (categoryIds.length <= 3) {
+                    categoryIds.push(id)
+                }
+
                 if (is_category === true) {
                     removeCategory(name)
                 }

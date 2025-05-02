@@ -4,6 +4,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { signupSchema } from "../utils/schema";
 import { useUserStore } from "../store/authStore";
+import { Link } from "react-router-dom";
 
 
 interface ISignup {
@@ -42,7 +43,7 @@ const Signup = () => {
             <h1 className="text-[32px] font-bold text-main-color">Create Your Account</h1>
 
 
-            <form onSubmit={handleSubmit(onSubmit)} className="my-10">
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-10">
               <div className="flex flex-col my-4">
                 <Controller
                   name="email"
@@ -133,6 +134,12 @@ const Signup = () => {
                 Sign up
               </button>
             </form>
+
+            <h1 className="mt-2 text-center">You have an account ? <br />
+              <Link to={"/login"}>
+                <span className="text-blue-500">Login</span>
+              </Link>
+            </h1>
 
           </div>
         </div>

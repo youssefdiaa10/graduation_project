@@ -1,33 +1,43 @@
-import { GoArrowLeft } from "react-icons/go";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import { useFavoriteBooks } from "../context/FavoriteContext";
 import { useBookStore } from "../store/bookStore";
-import { useReadingBooks } from "../context/ReadingContext";
-import StarRating from "./StarRating";
 import { useBookShowStore } from "../store/bookShowStore";
 import { useFavoriteStore } from "../store/favoriteStore";
 import { useUserStore } from "../store/authStore";
+import { useHistoryStore } from "../store/historyStore";
+import { FaStar } from 'react-icons/fa'
+import { useReviewStore } from "../store/reviewStore";
+// import StarRating from "./StarRating";
+
 
 const BookItem = ({ bookId }: { bookId: string }) => {
 
     const [isHeart, setIsHeart] = useState<boolean>(false)
     const { bookByID, getBookByID } = useBookStore()
     const { setBookItemShow } = useBookShowStore()
-    const { addBookToReading } = useReadingBooks()
-    const { toggleFavorite } = useFavoriteStore()
+    const { addHistoryBook } = useHistoryStore()
+    const { favoriteBooks, toggleFavorite, getFavoriteBooks } = useFavoriteStore()
+    const { addReviewBook } = useReviewStore()
     const { user } = useUserStore()
-    const { addBookToFavorite, removeBookFromFavorite, isFavorite } = useFavoriteBooks()
+    const [rating, setRating] = useState<number>(0)
+    const [hover, setHover] = useState<number>(0)
 
     useEffect(() => {
         if (bookId) {
             getBookByID(bookId)
         }
-    }, [bookId])
+        if (user?.id) {
+            getFavoriteBooks(user?.id)
+        }
+    }, [bookId, user])
 
-    const handleFavorite = (book_name: string) => {
-        const favorite = isFavorite(book_name)
-        setIsHeart(favorite)
+    const handleFavorite = (bookId: string) => {
+        for (let i = 0; i < favoriteBooks.length; i++) {
+            if (favoriteBooks[i].id === bookId) {
+                setIsHeart(true)
+                break
+            }
+        }
     }
 
     if (!bookByID) {
@@ -35,16 +45,13 @@ const BookItem = ({ bookId }: { bookId: string }) => {
     }
     return (
         <>
-            <div className="absolute z-1 top-0 left-0 right-0 h-full bg-black/20">
+            <div className="absolute z-1 top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black/20">
                 <div className="w-lg mx-auto bg-white mt-6 rounded-2xl pb-2 shadow-xl" onLoad={() => handleFavorite(bookByID.name)}>
                     <div className="bg-main relative min-h-[400px] flex flex-col justify-center items-center">
-                        <div className="w-full flex justify-between items-center">
-                            <div>
-                                <GoArrowLeft className="text-white/0" />
-                            </div>
+                        <div className="w-full flex justify-end absolute top-3  items-center">
                             <div
-                                className="mr-5 bg-white hover:bg-gray-200 transition duration-150 text-main px-4 rounded-2xl font-bold text-[24px]"
-                                onClick={setBookItemShow}
+                                className="mr-5 bg-white hover:bg-gray-200 transition duration-150 cursor-pointer text-main px-4 rounded-2xl font-bold text-[24px]"
+                                onClick={() => setBookItemShow(false)}
                             >
                                 X
                             </div>
@@ -68,22 +75,49 @@ const BookItem = ({ bookId }: { bookId: string }) => {
 
 
                         <div className="flex justify-center gap-3.5 my-7">
-                            <StarRating key={bookByID.averageRating} />
+                            {
+                                [...Array(5)].map((_star, i) => {
+                                    const ratingValue = i + 1;
+                                    return (
+                                        <label key={`${i}`}>
+                                            <input
+                                                className='star'
+                                                type="radio"
+                                                name="rating"
+                                                value={ratingValue}
+                                                onClick={() => {
+                                                    setRating(ratingValue)
+                                                    if (user?.id) {
+                                                        addReviewBook(user.id, bookId, rating)
+                                                    }
+                                                }}
+                                            />
+                                            <FaStar
+                                                className="text-[34px] cursor-pointer text-black"
+                                                color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+                                                size={35}
+                                                onMouseEnter={() => setHover(ratingValue)}
+                                                onMouseLeave={() => setHover(0)}
+                                            />
+                                        </label>
+                                    )
+                                })
+                            }
                         </div>
 
 
                         <div className="hover:bg-main bg-secondary flex items-center my-7 justify-center w-fit gap-10 mx-auto py-2 px-16 rounded-3xl">
-                            <button
+                            <a
+                                href="https://www.gutenberg.org/ebooks/75999.html.images"
+                                className="text-[25px] px-3 font-bold cursor-pointer text-white"
                                 onClick={() => {
-                                    addBookToReading(bookByID)
-
                                     if (user?.id) {
-                                        toggleFavorite(user?.id, bookId)
+                                        addHistoryBook(user.id, bookId)
                                     }
                                 }}
-                                className="text-[25px] px-3 font-bold text-white">
+                            >
                                 Read Now
-                            </button>
+                            </a>
                             <div className="flex gap-5 items-center">
                                 <h1 className="text-white text-[30px] font-light">|</h1>
                                 {
@@ -91,18 +125,22 @@ const BookItem = ({ bookId }: { bookId: string }) => {
                                         <IoHeartSharp
                                             onClick={() => {
                                                 setIsHeart((prev) => !prev)
-                                                removeBookFromFavorite(bookByID.name)
+                                                if (user?.id) {
+                                                    toggleFavorite(user?.id, bookId)
+                                                }
                                             }
                                             }
-                                            className="text-[45px] mt-2 text-red-500" />
+                                            className="text-[45px] mt-2 cursor-pointer text-red-500" />
                                         :
                                         <IoHeartOutline
                                             onClick={() => {
                                                 setIsHeart((prev) => !prev)
-                                                addBookToFavorite(bookByID)
+                                                if (user?.id) {
+                                                    toggleFavorite(user?.id, bookId)
+                                                }
                                             }
                                             }
-                                            className="text-[45px] mt-2 text-white" />
+                                            className="text-[45px] mt-2 cursor-pointer text-white" />
                                 }
                             </div>
                         </div>

@@ -30,6 +30,7 @@ export interface IUser {
     phone: string;
     username: string;
     password: string;
+    profilePicture: string;
 }
 
 

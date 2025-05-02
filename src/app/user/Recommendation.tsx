@@ -12,7 +12,7 @@ const Recommendation = () => {
 
   return (
     <>
-      <div className="px-5">
+      <div className="px-5 relative">
         <h1 className="font-bold text-main-color text-[30px]">Recommendation</h1>
         <div className="mt-5 grid grid-cols-5 gap-3 bg-gray-100 inset-shadow-gray-950 py-3 px-5 rounded-2xl">
           {randomBooks.map(book => (

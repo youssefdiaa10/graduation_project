@@ -14,7 +14,7 @@ const Favorite = () => {
     if (user?.id) {
       getFavoriteBooks(user?.id)
     }
-  }, [favoriteBooks])
+  }, [])
 
   return (
     <>
