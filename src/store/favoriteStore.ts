@@ -20,6 +20,9 @@ export const useFavoriteStore = create<IFavoriteState>((set) => (
                     "userId": userId,
                     "bookId": bookId
                 })
+                set((state) => {
+                    return { favoriteBooks: state.favoriteBooks.filter((book) => book.id !== bookId) }
+                })
             } catch (error) {
                 console.log(error)
             }

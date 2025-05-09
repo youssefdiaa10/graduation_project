@@ -4,7 +4,7 @@ import { IoHeartSharp } from 'react-icons/io5'
 import { useFavoriteStore } from '../store/favoriteStore'
 import { useUserStore } from '../store/authStore'
 
-type Props = IBook & { type: "search" | "favorite" | "history" } & { setRender: React.Dispatch<React.SetStateAction<boolean>> }
+type Props = IBook & { type: "search" | "favorite" | "history" }
 
 export const BookHorizontal = ({
     id,
@@ -12,8 +12,7 @@ export const BookHorizontal = ({
     name,
     author,
     averageRating,
-    type,
-    setRender }: Props) => {
+    type, }: Props) => {
 
     const { toggleFavorite } = useFavoriteStore()
     const { user } = useUserStore()
@@ -43,7 +42,6 @@ export const BookHorizontal = ({
                         :
                         <IoHeartSharp
                             onClick={() => {
-                                setRender((prev) => !prev)
                                 if (user?.id && id) {
                                     toggleFavorite(user.id, id)
                                 }
