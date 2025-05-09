@@ -11,7 +11,7 @@ const Icon = ({
 }: Props) => {
   return (
     <div className="flex items-center">
-      <img src={logo} alt="book" width={68} height={68}/>
+      <img src={logo} alt="book" width={68} height={68} />
       <h1 className={text_className}>{text}</h1>
     </div>
   )

@@ -1,26 +1,29 @@
+import { motion } from "framer-motion"
+import { slideInFromRight, slideInFromTop } from "../../utils/motion"
+import { BookHorizontal } from "../../components/BookHorizontal"
+import { useHistoryStore } from "../../store/historyStore"
 import { useEffect } from "react"
-import { Book } from "../../components/Book"
-import { useBookStore } from "../../store/bookStore"
 import { useUserStore } from "../../store/authStore"
 
-const PopularNow = () => {
 
-    const { topBooks, getTopBooks } = useBookStore()
+const History = () => {
+
+    const { historyBooks, getHistoryBooks } = useHistoryStore()
     const { user } = useUserStore()
 
     useEffect(() => {
         if (user?.id) {
-            getTopBooks(user.id)
+            getHistoryBooks(user.id)
         }
     }, [])
 
     return (
         <>
-            <div className="px-5">
-                <h1 className="font-bold text-main-color text-[30px]">Popular Now</h1>
-                <div className="mt-5 grid grid-cols-5 gap-5 bg-gray-100 inset-shadow-gray-950 py-3 px-5 rounded-2xl">
-                    {topBooks.map(book => (
-                        <Book
+            <div className="px-5 mb-4">
+                <motion.h1 variants={slideInFromTop(0.3)} className="font-bold text-main-color text-[30px]">Reading History</motion.h1>
+                <motion.div variants={slideInFromRight(0.3)} className="mt-10 px-7 py-5 bg-gray-100 rounded-4xl inset-shadow-gray-950">
+                    {historyBooks.map((book) => (
+                        <BookHorizontal
                             key={book.name}
                             id={book.id}
                             name={book.name}
@@ -32,12 +35,13 @@ const PopularNow = () => {
                             averageRating={book.averageRating}
                             numPages={book.numPages}
                             linkBook={book.linkBook}
+                            type="history"
                         />
                     ))}
-                </div>
+                </motion.div>
             </div>
         </>
     )
 }
 
-export default PopularNow
+export default History

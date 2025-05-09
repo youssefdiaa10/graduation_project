@@ -5,16 +5,17 @@ export interface IOnboardingV1 {
 
 
 export interface IBook {
-    id: string
+    id?: string;
     name: string;
     author: string;
     description: string;
     fileURL: string;
-    categoryName: string;
-    publishedYear: number;
+    categoryName?: string;
+    publishedYear?: number;
     averageRating: number;
-    numPages: number;
-    linkBook: string;
+    numPages?: number;
+    linkBook?: string;
+    isFavorite?: boolean
 }
 
 
@@ -25,15 +26,20 @@ export interface IInfo {
 
 
 export interface IUser {
+    id: string;
     email: string;
+    phone: string;
+    username: string;
     password: string;
+    isAdmin: boolean;
+    profilePicture: string;
 }
 
 
-export type UserProfileToken = {
-    userName: string;
-    email: string;
-    token: string;
+export type IRigesterResponse = {
+    message: string;
+    userId: string;
+    emailConfirmationLink: string;
 };
 
 

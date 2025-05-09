@@ -1,25 +1,47 @@
 import { create } from "zustand"
-import { IUser } from "../utils/types";
+import { IRigesterResponse, IUser } from "../utils/types";
+import axios from "axios";
 
-
-interface IAuthState {
+type UserStore = {
     user: IUser | null;
-    setUser: (user: IUser) => void;
-    clearUser: () => void;
-    isValid: (email: string, password: string) => boolean;
+    message: string;
+    isAuth: boolean;
+    emailConfirmationLink: string
+    signup: (email:string, phone:string, username:string, password:string) => Promise<void>;
+    login: (email: string, password: string) => Promise<void>;
 }
 
-export const useUserStore = create<IAuthState>((set, get) => (
+export const useUserStore = create<UserStore>((set) => (
     {
         user: null,
-        setUser: (user) => set({ user }),
-        clearUser: () => set({ user: null }),
-        isValid: (login_email, login_password) => {
-            const { user } = get();
-            if (user !== null) {
-                return user.email === login_email && user.password === login_password;
+        message: "",
+        isAuth: false,
+        emailConfirmationLink: "",
+        login: async (email, password) => {
+            const response = await axios.post("http://smartshelf.runasp.net/api/User/login", {
+                "email": email,
+                "Password": password
+            })
+            // console.log("Space")
+            // console.log(response.data.user)
+            // localStorage.setItem("isAuth", "true")
+            set({ isAuth: true, user: response.data.user})
+        },
+        signup: async (email, phone, username, password) => {
+            try {
+                const response = await axios.post<IRigesterResponse>("http://smartshelf.runasp.net/api/User/register",
+                { 
+                    "Email": email,
+                    "Phone": phone,
+                    "Username": username,
+                    "Password": password 
+                })
+                // console.log(response.data.emailConfirmationLink)
+                // console.log(response.data.message)
+            set({ message: response.data.message, emailConfirmationLink: response.data.emailConfirmationLink })
+            } catch (error) {
+                console.log(error)
             }
-            return false
         },
     }
 ))

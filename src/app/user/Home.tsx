@@ -6,14 +6,15 @@ import { GenreAccordion } from "../../components/GenreAccordion"
 import Navbar from "../../components/Navbar"
 
 const Home = () => {
+
   return (
     <div className="h-screen relative">
       <motion.div variants={slideInFromTop(.5)}>
-        <Navbar/>
+        <Navbar />
       </motion.div>
 
       <div className="ml-5 z-50 absolute">
-        <GenreAccordion/>
+        <GenreAccordion />
       </div>
 
       <div className="mt-10 grid grid-flow-col grid-cols-5 h-screen">
@@ -21,8 +22,8 @@ const Home = () => {
           <Infos />
         </motion.div>
 
-        <div className="col-span-4 grid-cols-subgrid">
-        <Outlet/>
+        <div className="col-span-4 grid-cols-subgrid relative">
+          <Outlet />
         </div>
       </div>
     </div>
