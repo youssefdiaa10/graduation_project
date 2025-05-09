@@ -11,19 +11,17 @@ import BookItem from "../../components/BookItem"
 
 const Blog = () => {
 
+    const { bookItemShow, bookId } = useBookShowStore()
+    const { user } = useUserStore()
     const {
         topBooks,
         randomBooks,
         booksByUserCategories,
-        recommendedBooks,
-        getRecommendedBooks,
         getTopBooks,
         getBookByID,
         getRandomBooks,
         getBooksByUserCategories
     } = useBookStore()
-    const { bookItemShow, bookId } = useBookShowStore()
-    const { user } = useUserStore()
 
     useEffect(() => {
         if (bookId && user?.id) {
@@ -37,7 +35,6 @@ const Blog = () => {
             getBooksByUserCategories(user.id)
             getRandomBooks(user.id)
         }
-        getRecommendedBooks("1")
     }, [])
 
     return (
@@ -72,8 +69,6 @@ const Blog = () => {
                 </div>
             </motion.div>
 
-
-
             {/* You may like */}
             <motion.div variants={slideInFromTop(.5)} className="ml-7 my-10 mr-5">
                 <div className="flex justify-between items-baseline">
@@ -104,8 +99,6 @@ const Blog = () => {
                 </div>
             </motion.div>
 
-
-
             {/* Recommended */}
             <motion.div variants={slideInFromTop(.5)} className="ml-7 my-10 mr-5">
                 <div className="flex justify-between items-baseline">
@@ -118,7 +111,7 @@ const Blog = () => {
                     </Link>
                 </div>
                 <div className="bg-gray-100 rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
-                    {/* {randomBooks.map(book => (
+                    {randomBooks.map(book => (
                         <Book
                             key={book.id}
                             id={book.id}
@@ -132,9 +125,9 @@ const Blog = () => {
                             numPages={book.numPages}
                             linkBook={book.linkBook}
                         />
-                    ))} */}
+                    ))}
 
-                    {recommendedBooks.map(book => (
+                    {/* {recommendedBooks.map(book => (
                         <Book
                             key={book.book_id}
                             id={book.book_id}
@@ -148,10 +141,9 @@ const Blog = () => {
                             numPages={book.num_pages}
                         // linkBook={book.}
                         />
-                    ))}
+                    ))} */}
                 </div>
             </motion.div>
-
 
             <div className={bookItemShow === false ? "" : "absolute z-1 top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black/20"}>
                 {

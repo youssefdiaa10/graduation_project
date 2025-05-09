@@ -29,7 +29,7 @@ export const useMessageStore = create<IMessageState>((set) => (
         },
         sendMessageToAdmin: async (userId, message) => {
             try {
-                const response = await axios.post(`http://smartshelf.runasp.net/api/Message/send-message-to-admin`, {
+                await axios.post(`http://smartshelf.runasp.net/api/Message/send-message-to-admin`, {
                         "userId": userId,
                         "message": message
                 })
@@ -39,7 +39,7 @@ export const useMessageStore = create<IMessageState>((set) => (
         },
         sendMessageToUser: async (senderId, receiverId, message) => {
             try {
-                const response = await axios.post(`http://smartshelf.runasp.net/api/Message/send-message-to-user`, {
+                await axios.post(`http://smartshelf.runasp.net/api/Message/send-message-to-user`, {
                     "senderId": senderId,
                     "receiverId": receiverId,
                     "message": message

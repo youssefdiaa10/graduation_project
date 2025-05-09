@@ -21,7 +21,7 @@ export const useHistoryStore = create<IHistoryState>((set) => (
         },
         addHistoryBook: async (userId, bookId) => {
             try {
-                const response = await axios.post(`http://smartshelf.runasp.net/api/history/add`, {
+                await axios.post(`http://smartshelf.runasp.net/api/history/add`, {
                         "userId": userId,
                         "bookId": bookId
                 })

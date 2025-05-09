@@ -2,19 +2,20 @@ import { BookHorizontal } from "../../components/BookHorizontal"
 import { motion } from "framer-motion"
 import { slideInFromRight, slideInFromTop } from "../../utils/motion"
 import { useFavoriteStore } from "../../store/favoriteStore"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useUserStore } from "../../store/authStore"
 
 const Favorite = () => {
 
   const { favoriteBooks, getFavoriteBooks } = useFavoriteStore()
+  const [render, setRender] = useState<boolean>(false)
   const { user } = useUserStore()
 
   useEffect(() => {
     if (user?.id) {
       getFavoriteBooks(user?.id)
     }
-  }, [])
+  }, [render])
 
   return (
     <>
@@ -34,6 +35,7 @@ const Favorite = () => {
               averageRating={book.averageRating}
               numPages={book.numPages}
               linkBook={book.linkBook}
+              setRender={setRender}
               type="favorite"
             />
           ))}

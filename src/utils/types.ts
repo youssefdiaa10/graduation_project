@@ -5,7 +5,7 @@ export interface IOnboardingV1 {
 
 
 export interface IBook {
-    id?: string;
+    id: string;
     name: string;
     author: string;
     description: string;

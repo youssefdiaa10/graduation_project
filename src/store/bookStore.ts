@@ -55,7 +55,7 @@ export const useBookStore = create<BookStore>((set) => ({
     createBook: async (userId: string, categoryId: number, newBook: IBook) => {
         // set({ loading: true, error: null });
         try{
-            const response = await axios.post(`http://smartshelf.runasp.net/api/Book/Create/${userId}/${categoryId}`, {
+            await axios.post(`http://smartshelf.runasp.net/api/Book/Create/${userId}/${categoryId}`, {
                 "Name": newBook.name,
                 "Author": newBook.author,
                 "Description": newBook.description,
@@ -138,7 +138,7 @@ export const useBookStore = create<BookStore>((set) => ({
             console.log(error.message)
         }
     },
-    getRecommendedBooks: async (userId?: string) => {
+    getRecommendedBooks: async (_userId?: string) => {
         // set({ loading: true, error: null });
         try{
             const response = await axios.get<{ recommended_books: IRecommendedBook[] }>(`https://6cdb-156-204-25-2.ngrok-free.app/generate_recommendations?user_id=2`, {

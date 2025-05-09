@@ -22,7 +22,7 @@ const Login = () => {
       email: "",
       password: "",
     },
-    resolver: yupResolver(loginSchema)
+    // resolver: yupResolver(loginSchema)
   })
 
   const onSubmit: SubmitHandler<ILogin> = (data) => {

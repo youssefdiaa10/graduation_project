@@ -19,7 +19,7 @@ export const ReadingBooksProvider: React.FC<{ children: React.ReactNode }> = ({ 
     }
 
     const removeBookFromReading = (bookName: string) => {
-        setReadingBooks((prev) => prev.filter((book) => book.book_name !== bookName));
+        setReadingBooks((prev) => prev.filter((book) => book.name !== bookName));
     };
 
     return (
