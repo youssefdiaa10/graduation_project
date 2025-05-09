@@ -11,24 +11,33 @@ import BookItem from "../../components/BookItem"
 
 const Blog = () => {
 
-    const { topBooks, randomBooks, booksByUserCategories, getTopBooks, getBookByID, getRandomBooks, getBooksByUserCategories } = useBookStore()
+    const {
+        topBooks,
+        randomBooks,
+        booksByUserCategories,
+        recommendedBooks,
+        getRecommendedBooks,
+        getTopBooks,
+        getBookByID,
+        getRandomBooks,
+        getBooksByUserCategories
+    } = useBookStore()
+    const { bookItemShow, bookId } = useBookShowStore()
     const { user } = useUserStore()
 
-    const { bookItemShow, bookId } = useBookShowStore()
-
     useEffect(() => {
-        if (bookId) {
-            getBookByID(bookId)
+        if (bookId && user?.id) {
+            getBookByID(bookId, user.id)
         }
-        console.log(`Home: ${bookId}`)
     }, [bookId])
 
     useEffect(() => {
-        getTopBooks()
         if (user?.id) {
+            getTopBooks(user.id)
             getBooksByUserCategories(user.id)
+            getRandomBooks(user.id)
         }
-        getRandomBooks()
+        getRecommendedBooks("1")
     }, [])
 
     return (
@@ -47,7 +56,7 @@ const Blog = () => {
                 <div className="bg-gray-100 rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
                     {topBooks.map(book => (
                         <Book
-                            key={book.name}
+                            key={book.id}
                             id={book.id}
                             name={book.name}
                             author={book.author}
@@ -79,7 +88,7 @@ const Blog = () => {
                 <div className="bg-gray-100 rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
                     {booksByUserCategories.map((book) => (
                         <Book
-                            key={book.name}
+                            key={book.id}
                             id={book.id}
                             name={book.name}
                             author={book.author}
@@ -109,9 +118,9 @@ const Blog = () => {
                     </Link>
                 </div>
                 <div className="bg-gray-100 rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
-                    {randomBooks.map(book => (
+                    {/* {randomBooks.map(book => (
                         <Book
-                            key={book.name}
+                            key={book.id}
                             id={book.id}
                             name={book.name}
                             author={book.author}
@@ -123,27 +132,42 @@ const Blog = () => {
                             numPages={book.numPages}
                             linkBook={book.linkBook}
                         />
+                    ))} */}
+
+                    {recommendedBooks.map(book => (
+                        <Book
+                            key={book.book_id}
+                            id={book.book_id}
+                            name={book.title}
+                            author={book.author}
+                            description={book.description}
+                            fileURL={book.book_pic}
+                            categoryName={book.categories}
+                            publishedYear={book.published_year}
+                            averageRating={book.average_rate}
+                            numPages={book.num_pages}
+                        // linkBook={book.}
+                        />
                     ))}
                 </div>
             </motion.div>
 
 
-
-            {
-                bookItemShow === false
-                    ?
-                    ""
-                    :
-                    bookId !== null
+            <div className={bookItemShow === false ? "" : "absolute z-1 top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black/20"}>
+                {
+                    bookItemShow === false
                         ?
-                        <BookItem
-                            bookId={bookId}
-                        // bookId="394751221"
-                        />
-                        :
                         ""
-                // ""
-            }
+                        :
+                        bookId !== null
+                            ?
+                            <BookItem
+                                bookId={bookId}
+                            />
+                            :
+                            ""
+                }
+            </div>
         </>
     )
 }

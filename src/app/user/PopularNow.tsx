@@ -1,13 +1,17 @@
 import { useEffect } from "react"
 import { Book } from "../../components/Book"
 import { useBookStore } from "../../store/bookStore"
+import { useUserStore } from "../../store/authStore"
 
 const PopularNow = () => {
 
     const { topBooks, getTopBooks } = useBookStore()
+    const { user } = useUserStore()
 
     useEffect(() => {
-        getTopBooks()
+        if (user?.id) {
+            getTopBooks(user.id)
+        }
     }, [])
 
     return (

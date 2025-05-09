@@ -1,10 +1,8 @@
 import { FaStar } from 'react-icons/fa'
 import { IBook } from '../utils/types'
 import { IoHeartSharp } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
 import { useFavoriteStore } from '../store/favoriteStore'
 import { useUserStore } from '../store/authStore'
-import { useEffect } from 'react'
 
 type Props = IBook & { type: "search" | "favorite" | "history" }
 
@@ -28,8 +26,8 @@ export const BookHorizontal = ({
                 <div className="flex gap-3.5">
                     <img src={fileURL} className="rounded-2xl" alt="book cover" width={100} />
                     <div className="flex flex-col">
-                        <h1 className="text-[20px] font-bold mt-2 italic">{name}</h1>
-                        <h1 className="italic text-gray-400 my-2">{author}</h1>
+                        <h1 className="text-[20px] font-bold mt-2">{name}</h1>
+                        <h1 className="text-gray-400 my-2">{author}</h1>
                         <div className="flex gap-2 items-center">
                             <span>{rating}</span>
                             <FaStar className="text-yellow-300" />
@@ -44,7 +42,7 @@ export const BookHorizontal = ({
                         :
                         <IoHeartSharp
                             onClick={() => {
-                                if (user?.id) {
+                                if (user?.id && id) {
                                     toggleFavorite(user.id, id)
                                 }
                             }}

@@ -8,7 +8,6 @@ const MainLayout = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     useEffect(() => {
-        console.log("Working")
         const savedIsAuth = localStorage.getItem("isAuth")
         setIsAuthenticated(savedIsAuth === "true")
         setIsAuthenticating(false)

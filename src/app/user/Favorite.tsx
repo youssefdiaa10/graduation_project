@@ -23,7 +23,7 @@ const Favorite = () => {
         <motion.div variants={slideInFromRight(.3)} className="mt-10 px-7 py-5 bg-gray-100 rounded-4xl inset-shadow-gray-950">
           {favoriteBooks.map((book) => (
             <BookHorizontal
-              key={book.name}
+              key={book.id}
               id={book.id}
               name={book.name}
               author={book.author}

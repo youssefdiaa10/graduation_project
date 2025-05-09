@@ -31,7 +31,7 @@ export const useReviewStore = create<IReviewState>((set) => (
                     "bookId": bookId,
                     "rating": rating
                 })
-                console.log(response)
+                // console.log(response)
             } catch (error) {
                 console.log(error)
             }

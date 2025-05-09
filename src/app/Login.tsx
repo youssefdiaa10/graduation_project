@@ -15,22 +15,26 @@ interface ILogin {
 const Login = () => {
 
   const navigate = useNavigate()
-
-  const { login } = useUserStore()
+  const { user, login } = useUserStore()
 
   const { handleSubmit, control, formState } = useForm<ILogin>({
     defaultValues: {
       email: "",
       password: "",
     },
-    // resolver: yupResolver(loginSchema)
+    resolver: yupResolver(loginSchema)
   })
-  const onSubmit: SubmitHandler<ILogin> = (data) => {
-    console.log(data)
-    login(data.email, data.password)
-    navigate("/category")
-  }
 
+  const onSubmit: SubmitHandler<ILogin> = (data) => {
+    login(data.email, data.password)
+    if (user?.isAdmin === true) {
+      navigate("/admin")
+    }
+    else if (user?.id !== null && user?.id !== undefined) {
+      localStorage.setItem("isAuth", "true")
+      navigate("/category")
+    }
+  }
 
   return (
     <div className="flex justify-evenly h-screen">
@@ -48,7 +52,12 @@ const Login = () => {
                   name="email"
                   control={control}
                   render={({ field }) => <>
-                    <label htmlFor="my-email" className="text-[18px] font-bold">Email</label>
+                    <label
+                      htmlFor="my-email"
+                      className="text-[18px] font-bold"
+                    >
+                      Email
+                    </label>
                     <input
                       {...field}
                       type="text"
@@ -66,7 +75,12 @@ const Login = () => {
                   name="password"
                   control={control}
                   render={({ field }) => <>
-                    <label htmlFor="my-password" className="text-[18px] font-bold">Password</label>
+                    <label
+                      htmlFor="my-password"
+                      className="text-[18px] font-bold"
+                    >
+                      Password
+                    </label>
                     <input
                       {...field}
                       type="password"

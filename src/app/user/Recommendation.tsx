@@ -1,13 +1,17 @@
 import { useEffect } from "react"
 import { Book } from "../../components/Book"
 import { useBookStore } from "../../store/bookStore"
+import { useUserStore } from "../../store/authStore"
 
 const Recommendation = () => {
 
   const { randomBooks, getRandomBooks } = useBookStore()
+  const { user } = useUserStore()
 
   useEffect(() => {
-    getRandomBooks()
+    if (user?.id) {
+      getRandomBooks(user.id)
+    }
   }, [])
 
   return (

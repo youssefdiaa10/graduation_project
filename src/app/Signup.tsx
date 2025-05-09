@@ -16,7 +16,7 @@ interface ISignup {
 
 const Signup = () => {
 
-  const { signup } = useUserStore()
+  const { message, emailConfirmationLink, signup } = useUserStore()
 
   const { handleSubmit, control, formState } = useForm<ISignup>({
     defaultValues: {
@@ -25,10 +25,10 @@ const Signup = () => {
       username: "",
       password: "",
     },
-    resolver: yupResolver(signupSchema)
+    // resolver: yupResolver(signupSchema)
   })
   const onSubmit: SubmitHandler<ISignup> = (data) => {
-    console.log(data)
+    // console.log(data)
     signup(data.email, data.phone, data.username, data.password)
   }
 
@@ -46,28 +46,15 @@ const Signup = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="mt-10">
               <div className="flex flex-col my-4">
                 <Controller
-                  name="email"
-                  control={control}
-                  render={({ field }) => <>
-                    <label htmlFor="my-email" className="text-[18px] font-bold">Email</label>
-                    <input
-                      {...field}
-                      type="email"
-                      id="my-email"
-                      className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]"
-                      placeholder="Enter your Email" />
-                    {formState.errors.email && formState.touchedFields.email ? (<div className="bg-red-200 text-red-900 rounded-2xl mt-1.5 py-3 px-3">{formState.errors.email.message}</div>) : ("")}
-                  </>
-                  }
-                />
-              </div>
-
-              <div className="flex flex-col my-4">
-                <Controller
                   name="username"
                   control={control}
                   render={({ field }) => <>
-                    <label htmlFor="my-name" className="text-[18px] font-bold">Name</label>
+                    <label
+                      htmlFor="my-name"
+                      className="text-[18px] font-bold"
+                    >
+                      Name
+                    </label>
                     <input
                       {...field}
                       type="text"
@@ -80,15 +67,45 @@ const Signup = () => {
                 />
               </div>
 
+
+              <div className="flex flex-col my-4">
+                <Controller
+                  name="email"
+                  control={control}
+                  render={({ field }) => <>
+                    <label
+                      htmlFor="my-email"
+                      className="text-[18px] font-bold"
+                    >
+                      Email
+                    </label>
+                    <input
+                      {...field}
+                      type="email"
+                      id="my-email"
+                      className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]"
+                      placeholder="Enter your Email" />
+                    {formState.errors.email && formState.touchedFields.email ? (<div className="bg-red-200 text-red-900 rounded-2xl mt-1.5 py-3 px-3">{formState.errors.email.message}</div>) : ("")}
+                  </>
+                  }
+                />
+              </div>
+
+
               <div className="flex flex-col my-4">
                 <Controller
                   name="phone"
                   control={control}
                   render={({ field }) => <>
-                    <label htmlFor="my-phone" className="text-[18px] font-bold">Phone</label>
+                    <label
+                      htmlFor="my-phone"
+                      className="text-[18px] font-bold"
+                    >
+                      Phone
+                    </label>
                     <input
                       {...field}
-                      type="number"
+                      type="tel"
                       id="my-phone"
                       className="border border-sky-400 py-1 px-3.5 outline-sky-400 rounded-2xl placeholder:italic placeholder:text-[15px]"
                       placeholder="Enter your Phone" />
@@ -104,7 +121,12 @@ const Signup = () => {
                   name="password"
                   control={control}
                   render={({ field }) => <>
-                    <label htmlFor="my-password" className="text-[18px] font-bold">Password</label>
+                    <label
+                      htmlFor="my-password"
+                      className="text-[18px] font-bold"
+                    >
+                      Password
+                    </label>
                     <input
                       {...field}
                       type="password"
@@ -131,7 +153,17 @@ const Signup = () => {
                 type="submit"
                 className={`mt-2 mb-4 disabled:cursor-not-allowed text-white bg-main disabled:bg-secondary w-full py-2 rounded-3xl font-bold`}
               >
-                Sign up
+                {
+                  message !== "Registration successful"
+                    ?
+                    "Sign up"
+                    :
+                    <a
+                      href={emailConfirmationLink}
+                    >
+                      Confirm
+                    </a>
+                }
               </button>
             </form>
 
