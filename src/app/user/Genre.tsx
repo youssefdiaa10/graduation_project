@@ -10,7 +10,7 @@ const Genre = () => {
 
   const { genre_name } = useParams()
   const { booksByCategoryName, getBooksByCategoryName, getBookByID } = useBookStore()
-  const { bookItemShow, bookId } = useBookShowStore()
+  const { bookId } = useBookShowStore()
   const { user } = useUserStore()
 
   useEffect(() => {

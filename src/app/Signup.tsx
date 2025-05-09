@@ -1,8 +1,8 @@
 import Icon from "../components/Icon"
 import image from "../assets/signup/signup_grad_proj_img.jpeg"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
-import { signupSchema } from "../utils/schema";
+// import { yupResolver } from "@hookform/resolvers/yup"
+// import { signupSchema } from "../utils/schema";
 import { useUserStore } from "../store/authStore";
 import { Link } from "react-router-dom";
 

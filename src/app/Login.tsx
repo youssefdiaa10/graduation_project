@@ -2,8 +2,8 @@ import image from "../assets/login/login_grad_proj_img.jpeg"
 import { Link, useNavigate } from "react-router-dom"
 import Icon from './../components/Icon';
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../utils/schema";
+// import { yupResolver } from "@hookform/resolvers/yup";
+// import { loginSchema } from "../utils/schema";
 import { useUserStore } from "../store/authStore";
 
 

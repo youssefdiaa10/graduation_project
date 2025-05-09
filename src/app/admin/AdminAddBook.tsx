@@ -11,7 +11,7 @@ const AdminAddBook = () => {
     const { allCategories, getAllCategories } = useCategoryStore()
 
     const [categoryID, setCategoryID] = useState<number>(0)
-    const [newBook, setNewBook] = useState<IBook>()
+    const [newBook, setNewBook] = useState<Omit<IBook, "id">>()
 
     const [name, setName] = useState<string>("")
     const [fileURL, setFileURL] = useState<string>("")
