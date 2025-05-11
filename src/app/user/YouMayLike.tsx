@@ -2,16 +2,17 @@ import { useEffect } from "react"
 import { Book } from "../../components/Book"
 import { useBookStore } from "../../store/bookStore"
 import { useUserStore } from "../../store/authStore"
+import { useBookShowStore } from "../../store/bookShowStore"
+import BookItem from "../../components/BookItem"
 
 const YouMayLike = () => {
 
     const { booksByUserCategories, getBooksByUserCategories } = useBookStore()
+    const { bookId, bookItemShow } = useBookShowStore()
     const { user } = useUserStore()
 
     useEffect(() => {
-        if (user?.id) {
-            getBooksByUserCategories(user.id)
-        }
+        getBooksByUserCategories(user.id)
     }, [])
 
     return (
@@ -35,6 +36,22 @@ const YouMayLike = () => {
                         />
                     ))}
                 </div>
+            </div>
+
+            <div className={bookItemShow === false ? "" : "absolute z-1 top-0 left-0 right-0 bottom-0 flex justify-center items-center overflow-scroll bg-black/20"}>
+                {
+                    bookItemShow === false
+                        ?
+                        ""
+                        :
+                        bookId !== null
+                            ?
+                            <BookItem
+                                bookId={bookId}
+                            />
+                            :
+                            ""
+                }
             </div>
         </>
     )

@@ -26,9 +26,6 @@ export const useUserStore = create<UserStore>()(
                         "email": email,
                         "Password": password
                     })
-                    // console.log("Space")
-                    // console.log(response.data.user)
-                    // localStorage.setItem("isAuth", "true")
                     set({ isAuth: true, user: response.data.user })
                 },
                 signup: async (email, phone, username, password) => {
@@ -40,8 +37,6 @@ export const useUserStore = create<UserStore>()(
                                 "Username": username,
                                 "Password": password
                             })
-                        // console.log(response.data.emailConfirmationLink)
-                        // console.log(response.data.message)
                         set({ message: response.data.message, emailConfirmationLink: response.data.emailConfirmationLink })
                     } catch (error) {
                         console.log(error)

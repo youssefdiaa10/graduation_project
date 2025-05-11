@@ -20,7 +20,6 @@ export interface IBook {
 
 
 export interface IInfo {
-    // id: number;
     text: string;
 }
 

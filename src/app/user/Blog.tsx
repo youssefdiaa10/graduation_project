@@ -7,16 +7,18 @@ import { useEffect } from "react"
 import { useBookStore } from "../../store/bookStore"
 import { useUserStore } from "../../store/authStore"
 import { useBookShowStore } from "../../store/bookShowStore"
-import BookItem from "../../components/BookItem"
+import BookShowItem from "../../components/BookShowItem"
 
 const Blog = () => {
 
-    const { bookItemShow, bookId } = useBookShowStore()
+    const { bookId } = useBookShowStore()
     const { user } = useUserStore()
     const {
         topBooks,
         randomBooks,
         booksByUserCategories,
+        // recommendedBooks,
+        // getRecommendedBooks,
         getTopBooks,
         getBookByID,
         getRandomBooks,
@@ -24,17 +26,14 @@ const Blog = () => {
     } = useBookStore()
 
     useEffect(() => {
-        if (bookId && user?.id) {
-            getBookByID(bookId, user.id)
-        }
+        getBookByID(bookId, user.id)
     }, [bookId])
 
     useEffect(() => {
-        if (user?.id) {
-            getTopBooks(user.id)
-            getBooksByUserCategories(user.id)
-            getRandomBooks(user.id)
-        }
+        getTopBooks(user.id)
+        getBooksByUserCategories(user.id)
+        getRandomBooks(user.id)
+        // getRecommendedBooks(1)
     }, [])
 
     return (
@@ -126,40 +125,10 @@ const Blog = () => {
                             linkBook={book.linkBook}
                         />
                     ))}
-
-                    {/* {recommendedBooks.map(book => (
-                        <Book
-                            key={book.book_id}
-                            id={book.book_id}
-                            name={book.title}
-                            author={book.author}
-                            description={book.description}
-                            fileURL={book.book_pic}
-                            categoryName={book.categories}
-                            publishedYear={book.published_year}
-                            averageRating={book.average_rate}
-                            numPages={book.num_pages}
-                        // linkBook={book.}
-                        />
-                    ))} */}
                 </div>
             </motion.div>
 
-            <div className={bookItemShow === false ? "" : "absolute z-1 top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black/20"}>
-                {
-                    bookItemShow === false
-                        ?
-                        ""
-                        :
-                        bookId !== null
-                            ?
-                            <BookItem
-                                bookId={bookId}
-                            />
-                            :
-                            ""
-                }
-            </div>
+            <BookShowItem />
         </>
     )
 }

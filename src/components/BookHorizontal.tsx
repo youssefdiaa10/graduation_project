@@ -42,7 +42,7 @@ export const BookHorizontal = ({
                         :
                         <IoHeartSharp
                             onClick={() => {
-                                if (user?.id && id) {
+                                if (user.id && id) {
                                     toggleFavorite(user.id, id)
                                 }
                             }}

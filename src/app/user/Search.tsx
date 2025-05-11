@@ -11,7 +11,7 @@ const Search = () => {
   let searchContext = ""
 
   function handleSearch() {
-    if (searchContext !== "" && user?.id) {
+    if (searchContext !== "") {
       getBooksByName(searchContext, user.id)
     }
   }

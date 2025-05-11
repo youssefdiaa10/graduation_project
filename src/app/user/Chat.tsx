@@ -11,9 +11,7 @@ const Chat = () => {
     const [send, setSend] = useState<boolean>()
 
     useEffect(() => {
-        if (user?.id) {
-            getUserChatWithAdmin(user.id)
-        }
+        getUserChatWithAdmin(user.id)
         setSend(false)
     }, [send])
 
@@ -30,7 +28,7 @@ const Chat = () => {
 
                 <div className="flex flex-col h-[500px] my-3 py-3 scrollable-div overflow-y-scroll overflow-x-hidden">
                     {messages.map((msg) => (
-                        <div className={`${msg.senderUserId === "254"
+                        <div className={`${msg.senderId !== user.id
                             ?
                             "bg-gray-300 ml-8 text-black self-start"
                             :
@@ -55,7 +53,7 @@ const Chat = () => {
                     />
                     <IoMdSend
                         onClick={() => {
-                            if (user?.id) {
+                            if (user.id) {
                                 sendMessageToAdmin(user.id, message)
                             }
                             setMessage("")

@@ -1,8 +1,8 @@
 import Icon from "../components/Icon"
 import image from "../assets/signup/signup_grad_proj_img.jpeg"
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
-// import { yupResolver } from "@hookform/resolvers/yup"
-// import { signupSchema } from "../utils/schema";
+import { yupResolver } from "@hookform/resolvers/yup"
+import { signupSchema } from "../utils/schema";
 import { useUserStore } from "../store/authStore";
 import { Link } from "react-router-dom";
 
@@ -25,10 +25,10 @@ const Signup = () => {
       username: "",
       password: "",
     },
-    // resolver: yupResolver(signupSchema)
+    resolver: yupResolver(signupSchema)
   })
   const onSubmit: SubmitHandler<ISignup> = (data) => {
-    // console.log(data)
+    console.log(data)
     signup(data.email, data.phone, data.username, data.password)
   }
 

@@ -2,6 +2,8 @@ import { FaStar } from "react-icons/fa"
 import { IBook } from "../utils/types"
 import { useGenreShowStore } from "../store/genreShowStore"
 import { useBookShowStore } from "../store/bookShowStore"
+import { useBookStore } from "../store/bookStore"
+import { useUserStore } from "../store/authStore"
 
 export const Book = ({
     id,
@@ -12,6 +14,8 @@ export const Book = ({
 
     const { isShow, setIsShow } = useGenreShowStore()
     const { setBookItemShow, setBookItemShowId } = useBookShowStore()
+    // const { getRecommendedBooks } = useBookStore()
+    // const { user } = useUserStore()
 
     let rating = String(averageRating)
     rating = rating.slice(0, 3)
@@ -29,6 +33,7 @@ export const Book = ({
                     handleAccordion()
                     setBookItemShow(true)
                     setBookItemShowId(id)
+                    // getRecommendedBooks(1)
                 }}>
                     <img src={fileURL} alt="book cover" className="rounded-2xl m-auto" />
                 </div>

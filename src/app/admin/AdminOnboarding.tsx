@@ -19,7 +19,7 @@ const AdminOnboarding = () => {
                         </Link>
                     </div>
                     <div className="w-full">
-                        `   <Link to={"/admin/chat"}>
+                        `   <Link to={"/admin/all_chats"}>
                             <button className="bg-secondary hover:bg-main transition duration-300 rounded-2xl text-white w-full text-[26px] font-bold my-6 px-7 py-3">Chat</button>
                         </Link>
                     </div>

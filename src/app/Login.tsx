@@ -2,8 +2,8 @@ import image from "../assets/login/login_grad_proj_img.jpeg"
 import { Link, useNavigate } from "react-router-dom"
 import Icon from './../components/Icon';
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-// import { yupResolver } from "@hookform/resolvers/yup";
-// import { loginSchema } from "../utils/schema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../utils/schema";
 import { useUserStore } from "../store/authStore";
 
 
@@ -22,15 +22,15 @@ const Login = () => {
       email: "",
       password: "",
     },
-    // resolver: yupResolver(loginSchema)
+    resolver: yupResolver(loginSchema)
   })
 
   const onSubmit: SubmitHandler<ILogin> = (data) => {
     login(data.email, data.password)
-    if (user?.isAdmin === true) {
+    if (user.isAdmin === true) {
       navigate("/admin")
     }
-    else if (user?.id !== null && user?.id !== undefined) {
+    else if (user.id !== null && user.id !== undefined) {
       localStorage.setItem("isAuth", "true")
       navigate("/category")
     }

@@ -5,7 +5,7 @@ import { IBook } from "../utils/types";
 interface IReviewState {
     getReviewBooks: () => Promise<void>;
     getAllUserReviewBooks: (userId: string) => Promise<void>
-    addReviewBook: (userId: string, bookId: string, rating:number) => Promise<void>
+    addReviewBook: (userId: string, bookId: string, rating: number) => Promise<void>
 }
 
 export const useReviewStore = create<IReviewState>((_set) => (
@@ -31,7 +31,6 @@ export const useReviewStore = create<IReviewState>((_set) => (
                     "bookId": bookId,
                     "rating": rating
                 })
-                // console.log(response)
             } catch (error) {
                 console.log(error)
             }

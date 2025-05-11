@@ -25,7 +25,7 @@ export const Infos = () => {
                     <div className="w-[75px] h-[75px] flex justify-center items-center rounded-full overflow-hidden">
                         <img
                             src={
-                                user?.profilePicture
+                                user.profilePicture
                                     ?
                                     user.profilePicture
                                     :
@@ -34,7 +34,7 @@ export const Infos = () => {
                             alt="face"
                         />
                     </div>
-                    <h1 className="text-center font-bold text-[17px] mt-3">{user?.username}</h1>
+                    <h1 className="text-center font-bold text-[17px] mt-3">{user.username}</h1>
                 </div>
                 <div className="mt-10">
                     <NavLink

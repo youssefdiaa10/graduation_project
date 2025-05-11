@@ -22,6 +22,7 @@ import AdminAddBook from './app/admin/AdminAddBook'
 import MainLayout from './components/layouts/MainLayout'
 import { CategoryProvider } from './context/CategoryContext'
 import { ReadingBooksProvider } from './context/ReadingContext'
+import AdminAllChats from './app/admin/AdminAllChats'
 
 
 
@@ -80,7 +81,11 @@ const router = createBrowserRouter([
         element: <AdminOnboarding />,
       },
       {
-        path: "/admin/chat",
+        path: "/admin/all_chats",
+        element: <AdminAllChats />
+      },
+      {
+        path: "/admin/chat/:userId",
         element: <AdminChat />
       },
       {
