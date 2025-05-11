@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom"
 const AdminChat = () => {
 
     const { messages, sendMessageToUser, getUserChatWithAdmin } = useMessageStore()
-    const { userId } = useParams()
+    const { userId, userName } = useParams()
     const [message, setMessage] = useState("")
     const [send, setSend] = useState<boolean>()
 
@@ -20,7 +20,7 @@ const AdminChat = () => {
             <div className="px-5 h-full py-5 flex flex-col justify-between">
                 <div className="flex bg-white rounded-2xl shadow-xl justify-center">
                     <div className="flex items-center gap-3">
-                        <h1 className="font-bold text-[40px] italic text-main-color">User</h1>
+                        <h1 className="font-bold text-[40px] italic text-main-color">{userName}</h1>
                         <div>🟢</div>
                     </div>
                 </div>

@@ -23,7 +23,7 @@ const AdminAllChats = () => {
                 <div className="flex flex-col items-center gap-4 my-5 w-full">
                     {adminUsers.map((user) => (
                         <div className="w-full mt-5">
-                            <Link to={`/admin/chat/${user.userId}`}>
+                            <Link to={`/admin/chat/${user.userId}/${user.userName}`}>
                                 <button className="bg-secondary hover:bg-main transition duration-300 rounded-2xl text-white w-full text-[26px] font-bold px-7 py-3">{user.userName}</button>
                             </Link>
                         </div>

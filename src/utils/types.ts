@@ -35,12 +35,11 @@ export interface IUser {
 }
 
 
-export type IRigesterResponse = {
+export type IUpdateProfile = {
     message: string;
-    userId: string;
-    emailConfirmationLink: string;
+    name: string;
+    profilePic: string;
 };
-
 
 export type UserProfile = {
     userName: string;

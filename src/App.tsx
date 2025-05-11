@@ -23,6 +23,7 @@ import MainLayout from './components/layouts/MainLayout'
 import { CategoryProvider } from './context/CategoryContext'
 import { ReadingBooksProvider } from './context/ReadingContext'
 import AdminAllChats from './app/admin/AdminAllChats'
+import UpdateProfile from './app/user/UpdateProfile'
 
 
 
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
             element: <PopularNow />
           },
           {
+            path: "/home/update_profile",
+            element: <UpdateProfile />
+          },
+          {
             path: "/home/you_may_like",
             element: <YouMayLike />
           },
@@ -85,7 +90,7 @@ const router = createBrowserRouter([
         element: <AdminAllChats />
       },
       {
-        path: "/admin/chat/:userId",
+        path: "/admin/chat/:userId/:userName",
         element: <AdminChat />
       },
       {

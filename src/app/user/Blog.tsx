@@ -15,10 +15,9 @@ const Blog = () => {
     const { user } = useUserStore()
     const {
         topBooks,
-        randomBooks,
         booksByUserCategories,
-        // recommendedBooks,
-        // getRecommendedBooks,
+        recommendedBooks,
+        getRecommendedBooks,
         getTopBooks,
         getBookByID,
         getRandomBooks,
@@ -33,7 +32,7 @@ const Blog = () => {
         getTopBooks(user.id)
         getBooksByUserCategories(user.id)
         getRandomBooks(user.id)
-        // getRecommendedBooks(1)
+        getRecommendedBooks("1")
     }, [])
 
     return (
@@ -110,7 +109,7 @@ const Blog = () => {
                     </Link>
                 </div>
                 <div className="bg-gray-100 rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
-                    {randomBooks.map(book => (
+                    {recommendedBooks.map(book => (
                         <Book
                             key={book.id}
                             id={book.id}

@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { IBook } from "../utils/types";
 
-
 interface ReadingBooksContextType {
     readingBooks: IBook[];
     addBookToReading: (book: IBook) => void;
@@ -9,7 +8,6 @@ interface ReadingBooksContextType {
 }
 
 const ReadingBooksContext = createContext<ReadingBooksContextType | undefined>(undefined);
-
 
 export const ReadingBooksProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [readingBooks, setReadingBooks] = useState<IBook[]>([])
@@ -29,8 +27,6 @@ export const ReadingBooksProvider: React.FC<{ children: React.ReactNode }> = ({ 
     )
 }
 
-
-// eslint-disable-next-line react-refresh/only-export-components
 export const useReadingBooks = (): ReadingBooksContextType => {
     const context = useContext(ReadingBooksContext)
 

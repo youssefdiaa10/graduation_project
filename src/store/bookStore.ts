@@ -12,8 +12,6 @@ type BookStore = {
     booksByName: IBook[];
     recommendedBooks: IBook[];
     moreLikeThisBooks: IBook[];
-    loading: boolean;
-    error: string | null;
     createBook: (userId: string, categoryId: number, newBook: Omit<IBook, "id">) => Promise<void>
     getAllBooks: (userId: string) => Promise<void>;
     getRandomBooks: (userId: string) => Promise<void>;
@@ -22,7 +20,7 @@ type BookStore = {
     getBookByID: (bookID: string, userId: string) => Promise<void>;
     getBooksByUserCategories: (userID: string) => Promise<void>;
     getBooksByName: (bookName: string, userId: string) => Promise<void>;
-    // getRecommendedBooks: (userId: string) => Promise<void>;
+    getRecommendedBooks: (userId: string) => Promise<void>;
     getMoreLikeThisBooks: (userId: string, bookId: string) => Promise<void>;
 };
 
@@ -36,8 +34,6 @@ export const useBookStore = create<BookStore>((set) => ({
     booksByName: [],
     recommendedBooks: [],
     moreLikeThisBooks: [],
-    loading: false,
-    error: null,
     createBook: async (userId: string, categoryId: number, newBook: Omit<IBook, "id">) => {
         try {
             await axios.post(`http://smartshelf.runasp.net/api/Book/Create/${userId}/${categoryId}`, {
@@ -54,16 +50,15 @@ export const useBookStore = create<BookStore>((set) => ({
     getAllBooks: async (userId: string) => {
         try {
             const response = await axios.get<{ books: IBook[] }>(`http://smartshelf.runasp.net/api/Book/GetAll/${userId}?pageNumber=1&pageSize=200`)
-            set({ allBooks: response.data.books, loading: false })
+            set({ allBooks: response.data.books })
         } catch (error: any) {
-            set({ error: error.message || 'Failed to fetch books', loading: false });
             console.log(error.message)
         }
     },
     getRandomBooks: async (userId: string) => {
         try {
             const response = await axios.get<IBook[]>(`http://smartshelf.runasp.net/api/Book/GetRandomBooks/${userId}`)
-            set({ randomBooks: response.data, loading: false })
+            set({ randomBooks: response.data })
         } catch (error: any) {
             console.log(error.message)
         }
@@ -71,7 +66,7 @@ export const useBookStore = create<BookStore>((set) => ({
     getTopBooks: async (userId: string) => {
         try {
             const response = await axios.get<IBook[]>(`http://smartshelf.runasp.net/api/Book/GetTopRatedBooks/${userId}`)
-            set({ topBooks: response.data, loading: false })
+            set({ topBooks: response.data })
         } catch (error: any) {
             console.log(error.message)
         }
@@ -79,7 +74,7 @@ export const useBookStore = create<BookStore>((set) => ({
     getBooksByCategoryName: async (categoryName: string, userId: string) => {
         try {
             const response = await axios.get<{ books: IBook[] }>(`http://smartshelf.runasp.net/api/Book/CategoryName/${categoryName}/${userId}?pageNumber=1&pageSize=46`)
-            set({ booksByCategoryName: response.data.books, loading: false })
+            set({ booksByCategoryName: response.data.books })
         } catch (error: any) {
             console.log(error.message)
         }
@@ -87,7 +82,7 @@ export const useBookStore = create<BookStore>((set) => ({
     getBookByID: async (bookID: string, userId: string) => {
         try {
             const response = await axios.get<IBook>(`http://smartshelf.runasp.net/api/Book/get/${bookID}/${userId}`)
-            set({ bookByID: response.data, loading: false })
+            set({ bookByID: response.data })
         } catch (error: any) {
             console.log(error.message)
         }
@@ -95,7 +90,7 @@ export const useBookStore = create<BookStore>((set) => ({
     getBooksByUserCategories: async (userId: string) => {
         try {
             const response = await axios.get<IBook[]>(`http://smartshelf.runasp.net/api/Book/GetTopBooksByUserCategories/${userId}`)
-            set({ booksByUserCategories: response.data, loading: false })
+            set({ booksByUserCategories: response.data })
         } catch (error: any) {
             console.log(error.message)
         }
@@ -103,33 +98,32 @@ export const useBookStore = create<BookStore>((set) => ({
     getBooksByName: async (bookName: string, userId: string) => {
         try {
             const response = await axios.get<{ books: IBook[] }>(`http://smartshelf.runasp.net/api/Book/BookName/${bookName}/${userId}`)
-            set({ booksByName: response.data.books, loading: false })
+            set({ booksByName: response.data.books })
         } catch (error: any) {
             console.log(error.message)
         }
     },
-    // getRecommendedBooks: async (userId: number) => {
-    //     try {
-    //         const response = await axios.get<{ recommended_books: IBook[] }>(`https://b96b-156-204-60-78.ngrok-free.app/generate_recommendations?user_id=1`)
-    //         // const res = JSON.parse(`${response.data.recommended_books}`)
-    //         // console.log("space")
-    //         console.log(response.data.recommended_books)
-    //         // console.log("space")
-    //         set({ recommendedBooks: response.data.recommended_books })
-    //     } catch (error: any) {
-    //         console.log(error.message)
-    //     }
-    // },
-    getMoreLikeThisBooks: async (userId: string, bookId: string) => {
+    getRecommendedBooks: async (userId: string) => {
         try {
-            const response = await axios.get<{ recommended_books: IBook[] }>(`https://b96b-156-204-60-78.ngrok-free.app/recommend_by_book_id?user_id=${userId}&book_id=${bookId}`, {
+            const response = await axios.get<{ recommended_books: IBook[] }>(`https://2a8c-156-204-60-78.ngrok-free.app/generate_recommendations?user_id=${userId}`, {
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json; charset=utf-8',
+                    "ngrok-skip-browser-warning": true,
                 }
             })
-            console.log(response.data.recommended_books)
             set({ recommendedBooks: response.data.recommended_books })
+        } catch (error: any) {
+            console.log(error.message)
+            set({ recommendedBooks: [] })
+        }
+    },
+    getMoreLikeThisBooks: async (userId: string, bookId: string) => {
+        try {
+            const response = await axios.get<{ recommended_books: IBook[] }>(`https://2a8c-156-204-60-78.ngrok-free.app/recommend_by_book_id?user_id=${userId}&book_id=${bookId}`, {
+                headers: {
+                    "ngrok-skip-browser-warning": true,
+                }
+            })
+            set({ moreLikeThisBooks: response.data.recommended_books })
         } catch (error: any) {
             console.log(error.message)
         }
