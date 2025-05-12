@@ -10,7 +10,7 @@ type CategoryStore = {
     error: string | null;
     getAllCategories: () => Promise<void>;
     getCategoryByID: (categoryID: number) => Promise<void>;
-    };
+};
 
 
 export const useCategoryStore = create<CategoryStore>((set) => ({
@@ -19,22 +19,22 @@ export const useCategoryStore = create<CategoryStore>((set) => ({
     loading: false,
     error: null,
     getAllCategories: async () => {
-        // set({ loading: true, error: null });
-        try{
+        set({ loading: true, error: null });
+        try {
             const response = await axios.get<{ categories: ICategory[] }>("http://smartshelf.runasp.net/api/Category?pageNumber=1&pageSize=46")
             set({ allCategories: response.data.categories, loading: false })
-        } catch(error: any){
-            // set({ error: error.message || 'Failed to fetch users', loading: false });
+        } catch (error: any) {
+            set({ error: error.message || 'Failed to fetch users', loading: false });
             console.log(error.message)
         }
     },
     getCategoryByID: async (categoryID: number) => {
-        // set({ loading: true, error: null });
-        try{
+        set({ loading: true, error: null });
+        try {
             const response = await axios.get<ICategory>(`http://smartshelf.runasp.net/api/Category/${categoryID}`)
             set({ categoryByID: response.data, loading: false })
-        } catch(error: any){
-            // set({ error: error.message || 'Failed to fetch users', loading: false });
+        } catch (error: any) {
+            set({ error: error.message || 'Failed to fetch users', loading: false });
             console.log(error.message)
         }
     },

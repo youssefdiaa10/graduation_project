@@ -25,10 +25,10 @@ const Signup = () => {
       username: "",
       password: "",
     },
-    // resolver: yupResolver(signupSchema)
+    resolver: yupResolver(signupSchema)
   })
   const onSubmit: SubmitHandler<ISignup> = (data) => {
-    // console.log(data)
+    console.log(data)
     signup(data.email, data.phone, data.username, data.password)
   }
 

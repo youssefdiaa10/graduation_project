@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { Book } from "../../components/Book"
 import { useBookStore } from "../../store/bookStore"
 import { useUserStore } from "../../store/authStore"
+import BookShowItem from "../../components/BookShowItem"
 
 const PopularNow = () => {
 
@@ -9,9 +10,7 @@ const PopularNow = () => {
     const { user } = useUserStore()
 
     useEffect(() => {
-        if (user?.id) {
-            getTopBooks(user.id)
-        }
+        getTopBooks(user.id)
     }, [])
 
     return (
@@ -36,6 +35,8 @@ const PopularNow = () => {
                     ))}
                 </div>
             </div>
+
+            <BookShowItem />
         </>
     )
 }

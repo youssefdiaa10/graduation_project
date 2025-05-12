@@ -16,9 +16,12 @@ export const useFavoriteStore = create<IFavoriteState>((set) => (
         categoryIds: [],
         toggleFavorite: async (userId, bookId) => {
             try {
-                const response = await axios.post("http://smartshelf.runasp.net/api/Favourite/toggle-favorite", {
+                await axios.post("http://smartshelf.runasp.net/api/Favourite/toggle-favorite", {
                     "userId": userId,
                     "bookId": bookId
+                })
+                set((state) => {
+                    return { favoriteBooks: state.favoriteBooks.filter((book) => book.id !== bookId) }
                 })
             } catch (error) {
                 console.log(error)
@@ -26,15 +29,15 @@ export const useFavoriteStore = create<IFavoriteState>((set) => (
         },
         getFavoriteBooks: async (userId) => {
             try {
-                const response = await axios.get<{ favoriteBooks: IBook[] }>(`http://smartshelf.runasp.net/api/Favourite/favorites/${userId}`)
-                set({ favoriteBooks: response.data.favoriteBooks })
+                const response = await axios.get<{ books: IBook[] }>(`http://smartshelf.runasp.net/api/Favourite/favorites/${userId}`)
+                set({ favoriteBooks: response.data.books })
             } catch (error) {
                 console.log(error)
             }
         },
         setFavoriteCategories: async (userId, categoryIds) => {
             try {
-                const response = await axios.post(`http://smartshelf.runasp.net/api/UserCategory/select-categories`, {
+                await axios.post(`http://smartshelf.runasp.net/api/UserCategory/select-categories`, {
                     "UserId": userId,
                     "CategoryIds": categoryIds
                 })

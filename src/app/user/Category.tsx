@@ -36,7 +36,7 @@ const Category = () => {
                 <button
                     className="hover:bg-main bg-secondary transition duration-300 w-full text-white py-2 text-[20px] rounded-2xl"
                     onClick={() => {
-                        if (user?.id) {
+                        if (user.id) {
                             handleSelectCategories(user.id, categoryIds)
                         }
                     }}

@@ -12,10 +12,19 @@ const History = () => {
     const { user } = useUserStore()
 
     useEffect(() => {
-        if (user?.id) {
-            getHistoryBooks(user.id)
-        }
+        getHistoryBooks(user.id)
     }, [])
+
+    if (!historyBooks.length) {
+        return (
+            <div className="mt-8">
+                <h1 className="text-center text-main font-bold text-2xl">
+                    No Books have been read for Now
+                </h1>
+            </div>
+        )
+    }
+
 
     return (
         <>

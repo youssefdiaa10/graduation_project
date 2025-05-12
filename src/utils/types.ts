@@ -5,7 +5,7 @@ export interface IOnboardingV1 {
 
 
 export interface IBook {
-    id?: string;
+    id: string;
     name: string;
     author: string;
     description: string;
@@ -20,7 +20,6 @@ export interface IBook {
 
 
 export interface IInfo {
-    // id: number;
     text: string;
 }
 
@@ -36,12 +35,11 @@ export interface IUser {
 }
 
 
-export type IRigesterResponse = {
+export type IUpdateProfile = {
     message: string;
-    userId: string;
-    emailConfirmationLink: string;
+    name: string;
+    profilePic: string;
 };
-
 
 export type UserProfile = {
     userName: string;

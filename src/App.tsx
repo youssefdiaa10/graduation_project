@@ -21,7 +21,8 @@ import AdminSelectCategory from './app/admin/AdminSelectCategory'
 import AdminAddBook from './app/admin/AdminAddBook'
 import MainLayout from './components/layouts/MainLayout'
 import { CategoryProvider } from './context/CategoryContext'
-import { ReadingBooksProvider } from './context/ReadingContext'
+import AdminAllChats from './app/admin/AdminAllChats'
+import UpdateProfile from './app/user/UpdateProfile'
 
 
 
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             element: <PopularNow />
           },
           {
+            path: "/home/update_profile",
+            element: <UpdateProfile />
+          },
+          {
             path: "/home/you_may_like",
             element: <YouMayLike />
           },
@@ -80,7 +85,11 @@ const router = createBrowserRouter([
         element: <AdminOnboarding />,
       },
       {
-        path: "/admin/chat",
+        path: "/admin/all_chats",
+        element: <AdminAllChats />
+      },
+      {
+        path: "/admin/chat/:userId/:userName",
         element: <AdminChat />
       },
       {
@@ -110,13 +119,11 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <ReadingBooksProvider>
-      <CategoryProvider>
-        <motion.div initial="hidden" animate="visible">
-          <RouterProvider router={router} />
-        </motion.div>
-      </CategoryProvider>
-    </ReadingBooksProvider>
+    <CategoryProvider>
+      <motion.div initial="hidden" animate="visible">
+        <RouterProvider router={router} />
+      </motion.div>
+    </CategoryProvider>
   )
 }
 

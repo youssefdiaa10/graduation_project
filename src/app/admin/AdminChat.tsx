@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react"
 import { IoMdSend } from "react-icons/io"
-import { useUserStore } from "../../store/authStore"
 import { useMessageStore } from "../../store/messageStore"
+import { useParams } from "react-router-dom"
 
 const AdminChat = () => {
 
-    const { messages, sendMessageToAdmin, getUserChatWithAdmin } = useMessageStore()
-    const { user } = useUserStore()
+    const { messages, sendMessageToUser, getUserChatWithAdmin } = useMessageStore()
+    const { userId, userName } = useParams()
     const [message, setMessage] = useState("")
     const [send, setSend] = useState<boolean>()
 
     useEffect(() => {
-        if (user?.id) {
-            getUserChatWithAdmin(user.id)
-        }
+        getUserChatWithAdmin(userId)
         setSend(false)
     }, [send])
 
@@ -22,14 +20,14 @@ const AdminChat = () => {
             <div className="px-5 h-full py-5 flex flex-col justify-between">
                 <div className="flex bg-white rounded-2xl shadow-xl justify-center">
                     <div className="flex items-center gap-3">
-                        <h1 className="font-bold text-[40px] italic text-main-color">User</h1>
+                        <h1 className="font-bold text-[40px] italic text-main-color">{userName}</h1>
                         <div>🟢</div>
                     </div>
                 </div>
 
                 <div className="flex flex-col h-[500px] my-3 py-3 scrollable-div overflow-y-scroll overflow-x-hidden">
                     {messages.map((msg) => (
-                        <div className={`${msg.senderUserId !== "9e8cbc03-44c4-4d34-850b-bea6d6eef425"
+                        <div className={`${msg.senderId !== "254"
                             ?
                             "bg-gray-300 ml-8 text-black self-start"
                             :
@@ -53,9 +51,7 @@ const AdminChat = () => {
                     />
                     <IoMdSend
                         onClick={() => {
-                            if (user?.id) {
-                                sendMessageToAdmin(user.id, message)
-                            }
+                            sendMessageToUser("254", userId, message)
                             setMessage("")
                             setSend(true)
                         }}

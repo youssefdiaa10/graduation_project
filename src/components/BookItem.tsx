@@ -7,13 +7,12 @@ import { useUserStore } from "../store/authStore";
 import { useHistoryStore } from "../store/historyStore";
 import { FaStar } from 'react-icons/fa'
 import { useReviewStore } from "../store/reviewStore";
-// import StarRating from "./StarRating";
-
+import { Book } from "./Book";
 
 const BookItem = ({ bookId }: { bookId: string }) => {
 
     const [isHeart, setIsHeart] = useState<boolean>(false)
-    const { bookByID, getBookByID } = useBookStore()
+    const { bookByID, moreLikeThisBooks, getBookByID, getMoreLikeThisBooks } = useBookStore()
     const { setBookItemShow } = useBookShowStore()
     const { addHistoryBook } = useHistoryStore()
     const { favoriteBooks, toggleFavorite, getFavoriteBooks } = useFavoriteStore()
@@ -23,12 +22,9 @@ const BookItem = ({ bookId }: { bookId: string }) => {
     const [hover, setHover] = useState<number>(0)
 
     useEffect(() => {
-        if (bookId && user?.id) {
-            getBookByID(bookId, user.id)
-        }
-        if (user?.id) {
-            getFavoriteBooks(user?.id)
-        }
+        getBookByID(bookId, user.id)
+        getFavoriteBooks(user.id)
+        getMoreLikeThisBooks("1", bookId)
     }, [bookId, user])
 
     const handleFavorite = (bookId: string) => {
@@ -47,7 +43,6 @@ const BookItem = ({ bookId }: { bookId: string }) => {
         <>
             <div className="w-lg mx-auto bg-white mt-6 rounded-2xl pb-2 shadow-xl" onLoad={() => handleFavorite(bookByID.name)}>
 
-                {/* <div className="flex bg-amber-400"> */}
                 <div className="bg-main relative min-h-[400px] flex flex-col justify-center items-center">
                     <div className="w-full flex justify-end absolute top-3 items-center">
                         <div
@@ -86,7 +81,7 @@ const BookItem = ({ bookId }: { bookId: string }) => {
                                             value={ratingValue}
                                             onClick={() => {
                                                 setRating(ratingValue)
-                                                if (user?.id) {
+                                                if (user.id) {
                                                     addReviewBook(user.id, bookId, rating)
                                                 }
                                             }}
@@ -106,14 +101,12 @@ const BookItem = ({ bookId }: { bookId: string }) => {
 
                     <div className="hover:bg-main bg-secondary flex items-center my-7 justify-center w-fit gap-10 mx-auto py-2 px-16 rounded-3xl">
                         <a
-                            href="https://www.gutenberg.org/ebooks/75999.html.images"
+                            href="https://kvongcmehsanalibrary.wordpress.com/wp-content/uploads/2021/07/harrypotter.pdf"
                             className="text-[25px] px-3 font-bold cursor-pointer text-white"
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => {
-                                if (user?.id) {
-                                    addHistoryBook(user.id, bookId)
-                                }
+                                addHistoryBook(user.id, bookId)
                             }}
                         >
                             Read Now
@@ -125,8 +118,8 @@ const BookItem = ({ bookId }: { bookId: string }) => {
                                     <IoHeartSharp
                                         onClick={() => {
                                             setIsHeart((prev) => !prev)
-                                            if (user?.id) {
-                                                toggleFavorite(user?.id, bookId)
+                                            if (user.id) {
+                                                toggleFavorite(user.id, bookId)
                                             }
                                         }
                                         }
@@ -135,8 +128,8 @@ const BookItem = ({ bookId }: { bookId: string }) => {
                                     <IoHeartOutline
                                         onClick={() => {
                                             setIsHeart((prev) => !prev)
-                                            if (user?.id) {
-                                                toggleFavorite(user?.id, bookId)
+                                            if (user.id) {
+                                                toggleFavorite(user.id, bookId)
                                             }
                                         }
                                         }
@@ -148,10 +141,25 @@ const BookItem = ({ bookId }: { bookId: string }) => {
                     <div className="mt-3 mb-5 flex justify-center gap-5 mx-7">
                         <h1 className="bg-gray-200 text-center rounded-2xl text-[18px] py-4 px-5">{bookByID.description}</h1>
                     </div>
+
+                    <div className="rounded-4xl scrollable-div py-3 px-5 inset-shadow-gray-950 flex flex-row flex-nowrap gap-4 overflow-y-hidden overflow-x-scroll">
+                        {moreLikeThisBooks.map((book) => (
+                            <Book
+                                key={book.id}
+                                id={book.id}
+                                name={book.name}
+                                author={book.author}
+                                description={book.description}
+                                fileURL={book.fileURL}
+                                categoryName={book.categoryName}
+                                publishedYear={book.publishedYear}
+                                averageRating={book.averageRating}
+                                numPages={book.numPages}
+                                linkBook={book.linkBook}
+                            />
+                        ))}
+                    </div>
                 </div>
-                {/* </div> */}
-
-
             </div>
         </>
     )

@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { Book } from "../../components/Book"
 import { useBookStore } from "../../store/bookStore"
 import { useUserStore } from "../../store/authStore"
+import BookShowItem from "../../components/BookShowItem"
 
 const YouMayLike = () => {
 
@@ -9,9 +10,7 @@ const YouMayLike = () => {
     const { user } = useUserStore()
 
     useEffect(() => {
-        if (user?.id) {
-            getBooksByUserCategories(user.id)
-        }
+        getBooksByUserCategories(user.id)
     }, [])
 
     return (
@@ -36,6 +35,8 @@ const YouMayLike = () => {
                     ))}
                 </div>
             </div>
+
+            <BookShowItem />
         </>
     )
 }

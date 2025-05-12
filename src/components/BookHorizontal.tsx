@@ -42,11 +42,11 @@ export const BookHorizontal = ({
                         :
                         <IoHeartSharp
                             onClick={() => {
-                                if (user?.id && id) {
+                                if (user.id && id) {
                                     toggleFavorite(user.id, id)
                                 }
                             }}
-                            className="text-[60px] my-auto mr-10 text-red-500" />
+                            className="text-[60px] my-auto mr-10 cursor-pointer text-red-500" />
                 }
             </div>
         </>

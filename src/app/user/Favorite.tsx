@@ -11,10 +11,20 @@ const Favorite = () => {
   const { user } = useUserStore()
 
   useEffect(() => {
-    if (user?.id) {
-      getFavoriteBooks(user?.id)
+    if (user.id) {
+      getFavoriteBooks(user.id)
     }
   }, [])
+
+  if (!favoriteBooks.length) {
+    return (
+      <div className="mt-8">
+        <h1 className="text-center text-main font-bold text-2xl">
+          No Favorite Books for Now
+        </h1>
+      </div>
+    )
+  }
 
   return (
     <>

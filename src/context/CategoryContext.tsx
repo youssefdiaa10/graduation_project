@@ -4,7 +4,7 @@ import { ICategory } from "../utils/types";
 
 interface CategoryContextType {
     category: ICategory[];
-    addCategory:  (category: ICategory) => void;
+    addCategory: (category: ICategory) => void;
     removeCategory: (categoryName: string) => void;
     isCategory: (bookName: string) => boolean;
 }
@@ -22,11 +22,11 @@ export const CategoryProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
 
     const removeCategory = (categoryName: string) => {
-        setCategory((prev) => prev.filter((category) => category.name!== categoryName));
+        setCategory((prev) => prev.filter((category) => category.name !== categoryName));
     };
 
     const isCategory = (categoryName: string) => {
-        return category.some((category) => category.name=== categoryName);
+        return category.some((category) => category.name === categoryName);
     };
 
     return (
@@ -36,8 +36,6 @@ export const CategoryProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     )
 }
 
-
-// eslint-disable-next-line react-refresh/only-export-components
 export const useCategory = (): CategoryContextType => {
     const context = useContext(CategoryContext)
 

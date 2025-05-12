@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../utils/schema";
 import { useUserStore } from "../store/authStore";
 
-
 interface ILogin {
   email: string;
   password: string;
@@ -27,10 +26,10 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<ILogin> = (data) => {
     login(data.email, data.password)
-    if (user?.isAdmin === true) {
+    if (user.isAdmin === true) {
       navigate("/admin")
     }
-    else if (user?.id !== null && user?.id !== undefined) {
+    else if (user.id !== null && user.id !== undefined) {
       localStorage.setItem("isAuth", "true")
       navigate("/category")
     }
