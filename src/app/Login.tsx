@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../utils/schema";
 import { useUserStore } from "../store/authStore";
 
-
 interface ILogin {
   email: string;
   password: string;

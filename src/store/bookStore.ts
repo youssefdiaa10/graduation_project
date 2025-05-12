@@ -11,8 +11,9 @@ type BookStore = {
     booksByUserCategories: IBook[];
     booksByName: IBook[];
     recommendedBooks: IBook[];
+    recommendationMessage: string;
     moreLikeThisBooks: IBook[];
-    createBook: (userId: string, categoryId: number, newBook: Omit<IBook, "id">) => Promise<void>
+    createBook: (userId: string, categoryId: number, newBook: Omit<IBook, "id">) => Promise<void>;
     getAllBooks: (userId: string) => Promise<void>;
     getRandomBooks: (userId: string) => Promise<void>;
     getTopBooks: (userId: string) => Promise<void>;
@@ -34,6 +35,7 @@ export const useBookStore = create<BookStore>((set) => ({
     booksByName: [],
     recommendedBooks: [],
     moreLikeThisBooks: [],
+    recommendationMessage: "",
     createBook: async (userId: string, categoryId: number, newBook: Omit<IBook, "id">) => {
         try {
             await axios.post(`http://smartshelf.runasp.net/api/Book/Create/${userId}/${categoryId}`, {
@@ -105,12 +107,12 @@ export const useBookStore = create<BookStore>((set) => ({
     },
     getRecommendedBooks: async (userId: string) => {
         try {
-            const response = await axios.get<{ recommended_books: IBook[] }>(`https://2a8c-156-204-60-78.ngrok-free.app/generate_recommendations?user_id=${userId}`, {
+            const response = await axios.get<{ recommended_books: IBook[], message: string }>(`https://874d-41-237-130-166.ngrok-free.app/generate_recommendations?user_id=${userId}`, {
                 headers: {
                     "ngrok-skip-browser-warning": true,
                 }
             })
-            set({ recommendedBooks: response.data.recommended_books })
+            set({ recommendedBooks: response.data.recommended_books, recommendationMessage: response.data.message })
         } catch (error: any) {
             console.log(error.message)
             set({ recommendedBooks: [] })
@@ -118,7 +120,7 @@ export const useBookStore = create<BookStore>((set) => ({
     },
     getMoreLikeThisBooks: async (userId: string, bookId: string) => {
         try {
-            const response = await axios.get<{ recommended_books: IBook[] }>(`https://2a8c-156-204-60-78.ngrok-free.app/recommend_by_book_id?user_id=${userId}&book_id=${bookId}`, {
+            const response = await axios.get<{ recommended_books: IBook[] }>(`https://874d-41-237-130-166.ngrok-free.app/recommend_by_book_id?user_id=${userId}&book_id=${bookId}`, {
                 headers: {
                     "ngrok-skip-browser-warning": true,
                 }

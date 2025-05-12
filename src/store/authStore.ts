@@ -13,7 +13,6 @@ type UserStore = {
     user: IUser | null;
     isAuth: boolean;
     message: string;
-    profilePic: string;
     emailConfirmationLink: string;
     signup: (email: string, phone: string, username: string, password: string) => Promise<void>;
     login: (email: string, password: string) => Promise<void>;
@@ -27,16 +26,15 @@ export const useUserStore = create<UserStore>()(
                 user: null,
                 isAuth: false,
                 message: "",
-                profilePic: "",
                 emailConfirmationLink: "",
-                login: async (email, password) => {
+                login: async (email: string, password: string) => {
                     const response = await axios.post("http://smartshelf.runasp.net/api/User/login", {
                         "email": email,
                         "Password": password
                     })
                     set({ isAuth: true, user: response.data.user })
                 },
-                signup: async (email, phone, username, password) => {
+                signup: async (email: string, phone: string, username: string, password: string) => {
                     try {
                         const response = await axios.post<IRigesterResponse>("http://smartshelf.runasp.net/api/User/register",
                             {
@@ -52,12 +50,27 @@ export const useUserStore = create<UserStore>()(
                 },
                 updateProfile: async (userId: string, newName: string, newProfilePicture: string) => {
                     try {
+                        const formData = new FormData()
+                        formData.append("NewName", newName)
+                        formData.append("NewProfilePicture", newProfilePicture)
                         const response = await axios.post<IUpdateProfile>(`http://smartshelf.runasp.net/api/User/update-profile/${userId}`,
+                            formData,
                             {
-                                "NewName": newName,
-                                "NewProfilePicture": newProfilePicture,
-                            })
-                        set({ profilePic: response.data.profilePic })
+                                headers: {
+                                    "Content-Type": "multipart/form-data"
+                                }
+                            }
+                        )
+                        set((state) => {
+                            return {
+                                user: {
+                                    ...state.user,
+                                    username: response.data.name,
+                                    profilePicture: response.data.profilePic
+                                }
+                            }
+                        })
+
                     } catch (error) {
                         console.log(error)
                     }

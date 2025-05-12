@@ -47,7 +47,7 @@ export const Infos = () => {
                         className={`transition duration-300 hover:text-white hover:bg-main bg-white cursor-pointer rounded-2xl py-4 flex items-center my-5 gap-2 mx-5`}
                     >
                         <FaUserEdit className="text-[20px] ml-5 mr-2" />
-                        <h1 className="font-bold">Edit Image</h1>
+                        <h1 className="font-bold">Edit Profile</h1>
                     </NavLink>
 
                     <NavLink

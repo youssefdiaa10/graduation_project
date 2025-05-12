@@ -61,7 +61,8 @@ const UpdateProfile = () => {
             <button
                 onClick={() => {
                     updateProfile(user.id, newProfile.name, newProfile.profilePic)
-                    console.log(newProfile)
+                    // console.log(newProfile.name)
+                    // console.log(newProfile.profilePic)
                     setNewProfile(defaultValues)
                 }}
                 className="w-full text-center py-2 mt-9 transition duration-200 bg-secondary hover:bg-main text-white rounded-2xl font-bold text-[25px]"

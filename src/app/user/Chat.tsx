@@ -8,7 +8,7 @@ const Chat = () => {
     const { messages, sendMessageToAdmin, getUserChatWithAdmin } = useMessageStore()
     const { user } = useUserStore()
     const [message, setMessage] = useState("")
-    const [send, setSend] = useState<boolean>()
+    const [send, setSend] = useState<boolean>(false)
 
     useEffect(() => {
         getUserChatWithAdmin(user.id)
@@ -53,11 +53,11 @@ const Chat = () => {
                     />
                     <IoMdSend
                         onClick={() => {
-                            if (user.id) {
+                            if (message !== "") {
                                 sendMessageToAdmin(user.id, message)
+                                setMessage("")
+                                setSend(true)
                             }
-                            setMessage("")
-                            setSend(true)
                         }}
                         className="text-[35px] cursor-pointer"
                     />

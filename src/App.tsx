@@ -21,7 +21,6 @@ import AdminSelectCategory from './app/admin/AdminSelectCategory'
 import AdminAddBook from './app/admin/AdminAddBook'
 import MainLayout from './components/layouts/MainLayout'
 import { CategoryProvider } from './context/CategoryContext'
-import { ReadingBooksProvider } from './context/ReadingContext'
 import AdminAllChats from './app/admin/AdminAllChats'
 import UpdateProfile from './app/user/UpdateProfile'
 
@@ -120,13 +119,11 @@ const router = createBrowserRouter([
 function App() {
 
   return (
-    <ReadingBooksProvider>
-      <CategoryProvider>
-        <motion.div initial="hidden" animate="visible">
-          <RouterProvider router={router} />
-        </motion.div>
-      </CategoryProvider>
-    </ReadingBooksProvider>
+    <CategoryProvider>
+      <motion.div initial="hidden" animate="visible">
+        <RouterProvider router={router} />
+      </motion.div>
+    </CategoryProvider>
   )
 }
 
